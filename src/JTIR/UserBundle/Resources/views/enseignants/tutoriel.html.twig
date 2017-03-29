@@ -7,23 +7,68 @@
 {% endblock %}
 
 {% block menu %}
-    <li><a href="{{ path('jtir_platform_index') }}">Accueil</a></li>
-    <li class="dropdown active">
-        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
-           aria-haspopup="true" aria-expanded="false">Interface Enseignants <span class="caret"></span></a>
-        <ul class="dropdown-menu">
-            <li><a href="{{ path('jtir_platform_inscrire_classe') }}">Inscrire une classe</a></li>
-            <li><a href="{{ path('jtir_platform_bibliotheque_enseignant') }}">Sélectionner un conte</a></li>
-            <li><a href="{{ path('jtir_platform_partenariat') }}">Créer un partenariat</a></li>
-            <li><a href="{{ path('jtir_platform_dashboard') }}">Tableau de bord</a></li>
-        </ul>
-    </li>
-    <li><a href="{{ path('jtir_platform_tuto') }}">Tutoriels</a></li>
-    <li><a href="{{ path('jtir_platform_index') }}">Déconnexion</a></li>
+    {{ include('JTIRUserBundle:enseignants:menu.html.twig') }}
 {% endblock %}
 
 {% block body %}
 
+    <!-- TUTO -->
+    <section id="section_enseignants">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1">
+                    <h2>Tutoriels</h2>
+                    <hr>
+                </div>
+            </div>
 
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1 col-sm-10 col-sm-offset-1 block-classe" id="tutoriels">
+                    <img src="{{ asset('img/math.png') }}" alt="Un tableau de mathématiques" id="math">
+
+                    <div class="col-lg-4 video">
+                        <p class="text-center">Inscrire une classe</p>
+                        <iframe src="https://www.youtube.com/embed/HchMW8EhWPU" frameborder="0" allowfullscreen class="center-block"></iframe>
+                    </div>
+                    <div class="col-lg-4 video">
+                        <p class="text-center">Sélectionner le conte d'un élève</p>
+                        <iframe src="https://www.youtube.com/embed/HchMW8EhWPU" frameborder="0" allowfullscreen class="center-block"></iframe>
+                    </div>
+                    <div class="col-lg-4 video">
+                        <p class="text-center">Corriger un conte</p>
+                        <iframe src="https://www.youtube.com/embed/HchMW8EhWPU" frameborder="0" allowfullscreen class="center-block"></iframe>
+                    </div>
+
+                    <div class="col-lg-4 video">
+                        <p class="text-center">...</p>
+                        <iframe src="https://www.youtube.com/embed/HchMW8EhWPU" frameborder="0" allowfullscreen class="center-block"></iframe>
+                    </div>
+                    <div class="col-lg-4 video">
+                        <p class="text-center">...</p>
+                        <iframe src="https://www.youtube.com/embed/HchMW8EhWPU" frameborder="0" allowfullscreen class="center-block"></iframe>
+                    </div>
+                    <div class="col-lg-4 video">
+                        <p class="text-center">...</p>
+                        <iframe src="https://www.youtube.com/embed/HchMW8EhWPU" frameborder="0" allowfullscreen class="center-block"></iframe>
+                    </div>
+
+                </div>
+            </div>
+
+        </div>
+
+    </section>
+    <!-- /TUTO -->
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <script>
+        var menu = $('#burger_menu');
+
+        menu.find('ul > li.dropdown.active').removeClass('active');
+        menu.find('ul > li:nth-child(3)').addClass('active');
+    </script>
 
 {% endblock %}

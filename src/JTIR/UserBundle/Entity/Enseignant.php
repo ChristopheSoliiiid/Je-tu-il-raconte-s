@@ -1,18 +1,20 @@
 <?php
 namespace JTIR\UserBundle\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
+use FOS\UserBundle\Model\User as BaseUser;
 
 /**
+ * @ORM\Table(name="user_enseignant")
  * @ORM\Entity
  */
-class Enseignant
-{
+class Enseignant extends BaseUser {
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @ORM\OneToOne(targetEntity="JTIR\UserBundle\Entity\Adresse", inversedBy="enseignant")
@@ -36,23 +38,6 @@ class Enseignant
      * @ORM\JoinColumn(name="civilite_id", referencedColumnName="id", nullable=false)
      */
     private $civilite;
-    /**
-     * Constructor
-     */
-    public function __construct()
-    {
-        $this->classe = new \Doctrine\Common\Collections\ArrayCollection();
-    }
-
-    /**
-     * Get id
-     *
-     * @return integer
-     */
-    public function getId()
-    {
-        return $this->id;
-    }
 
     /**
      * Set adresse

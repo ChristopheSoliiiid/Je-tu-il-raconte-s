@@ -1,0 +1,22 @@
+#####################################
+# ROUTES POUR LES PAGES ENSEIGNANTS #
+#####################################
+jtir_enseignants_inscrire_classe:
+    path:     /enseignants/creer-classe
+    defaults: { _controller: JTIRUserBundle:Enseignants:classe }
+
+jtir_enseignants_bibliotheque:
+    path:     /enseignants/bibliotheque
+    defaults: { _controller: JTIRUserBundle:Enseignants:bibliotheque }
+
+jtir_enseignants_partenariat:
+    path:     /enseignants/partenariat
+    defaults: { _controller: JTIRUserBundle:Enseignants:partenariat }
+
+jtir_enseignants_dashboard:
+    path:     /enseignants/dashboard
+    defaults: { _controller: JTIRUserBundle:Enseignants:dashboard }
+
+jtir_enseignants_tuto:
+    path:     /enseignants/tutoriels
+    defaults: { _controller: JTIRUserBundle:Enseignants:tutoriel }

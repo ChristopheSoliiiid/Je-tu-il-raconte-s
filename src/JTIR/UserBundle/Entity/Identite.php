@@ -3,6 +3,7 @@ namespace JTIR\UserBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ORM\Table(name="user_identite")
  * @ORM\Entity
  */
 class Identite
