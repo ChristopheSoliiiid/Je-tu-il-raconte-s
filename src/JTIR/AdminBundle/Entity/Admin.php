@@ -15,8 +15,8 @@ class Admin
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="JTIR\UserBundle\Entity\Identite", inversedBy="admin")
-     * @ORM\JoinColumn(name="identite_id", referencedColumnName="id", nullable=false, unique=true)
+     * @ORM\OneToOne(targetEntity="JTIR\UserBundle\Entity\Identite")
+     * @ORM\JoinColumn(name="identite_id", referencedColumnName="id", nullable=false)
      */
     private $identite;
 
@@ -25,6 +25,7 @@ class Admin
      * @ORM\JoinColumn(name="civilite_id", referencedColumnName="id", nullable=false)
      */
     private $civilite;
+
 
     /**
      * Get id

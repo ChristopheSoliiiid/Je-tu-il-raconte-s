@@ -23,8 +23,8 @@ class Enseignant extends BaseUser {
     private $adresse;
 
     /**
-     * @ORM\OneToOne(targetEntity="JTIR\UserBundle\Entity\Identite", inversedBy="enseignant")
-     * @ORM\JoinColumn(name="identite_id", referencedColumnName="id", nullable=false, unique=true)
+     * @ORM\OneToOne(targetEntity="JTIR\UserBundle\Entity\Identite")
+     * @ORM\JoinColumn(name="identite_id", referencedColumnName="id", nullable=false)
      */
     private $identite;
 
@@ -34,10 +34,11 @@ class Enseignant extends BaseUser {
     private $classe;
 
     /**
-     * @ORM\ManyToOne(targetEntity="JTIR\UserBundle\Entity\Civilite", inversedBy="enseignant")
+     * @ORM\ManyToOne(targetEntity="JTIR\UserBundle\Entity\Civilite")
      * @ORM\JoinColumn(name="civilite_id", referencedColumnName="id", nullable=false)
      */
     private $civilite;
+
 
     /**
      * Set adresse

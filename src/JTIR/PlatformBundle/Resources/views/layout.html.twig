@@ -68,7 +68,7 @@
 {# Le block body va permettre de modifier le contenu de chaque page. #}
 {% block body %}
 
-
+    {# Les erreurs du bundle FOSUser a destination des utilisateurs #}
     {% for key, messages in app.session.flashbag.all() %}
         {% for message in messages %}
             <div class="alert alert-{{ key }}">
@@ -77,7 +77,7 @@
         {% endfor %}
     {% endfor %}
 
-
+    {# Block pour le bundle FOSUser #}
     {% block fos_user_content %}
 
     {% endblock fos_user_content %}

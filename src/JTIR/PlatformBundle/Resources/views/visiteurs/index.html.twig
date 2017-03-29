@@ -8,7 +8,7 @@
 
 {% block menu %}
     <li class="active"><a href="{{ path('jtir_platform_index') }}">Accueil</a></li>
-    <li><a href="">Connexion</a></li>
+    <li><a href="{{ path('fos_user_security_login') }}">Connexion</a></li>
     <li><a href="{{ path('jtir_platform_bibliotheque_visiteur') }}">Bibliothèque de contes</a></li>
 {% endblock %}
 
@@ -71,7 +71,7 @@
             <div class="row">
                 <div class="col-lg-offset-2 col-lg-4 col-sm-offset-2 col-sm-4 text-center btn-accueil-margintop">
                     <img id="panda" src="{{ asset('img/Panda.png') }}" alt="Un panda">
-                    <a href="">
+                    <a href="{{ path('fos_user_security_login') }}">
                         <button class="btn btn-def">CONNEXION</button>
                     </a>
                 </div>

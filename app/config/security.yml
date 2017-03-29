@@ -1,24 +1,38 @@
 # To get started with security, check out the documentation:
 # http://symfony.com/doc/current/security.html
 security:
+    encoders:
+        JTIR\UserBundle\Entity\Enseignant: sha512 #Hashage du mot de passe avec sha512
 
-    # http://symfony.com/doc/current/security.html#b-configuring-how-users-are-loaded
+    role_hierarchy:
+        ROLE_ELEVE: ROLE_ELEVE
+        ROLE_ENSEIGNANT: ROLE_ENSEIGNANT
+        ROLE_ADMIN: [ROLE_USER, ROLE_ELEVE, ROLE_ENSEIGNANT, ROLE_ADMIN, ROLE_ALLOWED_TO_SWITCH]
+
+    # Fournisseur d'utilisateur (Les firewalls s'adressent aux providers pour récupérer les utilisateurs et les identifier)
     providers:
-        in_memory:
-            memory: ~
+        fos_userbundle:
+            id: fos_user.user_provider.username
 
+    # Les différents pare-feu
     firewalls:
-        # disables authentication for assets and the profiler, adapt it according to your needs
         dev:
             pattern: ^/(_(profiler|wdt)|css|images|js)/
             security: false
-
         main:
-            anonymous: ~
-            # activate different ways to authenticate
+            pattern:   ^/
+            anonymous: true
+            provider: fos_userbundle
+            form_login:
+                login_path: fos_user_security_login
+                check_path: fos_user_security_check
+            logout:
+                path: fos_user_security_logout
+                target: /
+            remember_me:
+                secret: %secret%
 
-            # http_basic: ~
-            # http://symfony.com/doc/current/security.html#a-configuring-how-your-users-will-authenticate
-
-            # form_login: ~
-            # http://symfony.com/doc/current/cookbook/security/form_login_setup.html
+    # Le contrôle d'accès va s'occuper de déterminer si le visiteur a les bons droits (rôles) pour accéder à la ressource demandée.
+    access_control:
+        #- { path: ^/eleve, roles: ROLE_ELEVE }
+        - { path: ^/enseignant, roles: ROLE_ENSEIGNANT }

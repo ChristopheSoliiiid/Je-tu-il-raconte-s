@@ -13,3 +13,6 @@ jtir_user:
 jtir_platform:
     resource: "@JTIRPlatformBundle/Resources/config/routing.yml"
     prefix:   /
+
+fos_user_security:
+    resource: "@JTIRUserBundle/Resources/config/security.yml"

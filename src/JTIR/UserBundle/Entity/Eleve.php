@@ -16,7 +16,7 @@ class Eleve
     private $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="JTIR\UserBundle\Entity\Identite", inversedBy="eleve")
+     * @ORM\OneToOne(targetEntity="JTIR\UserBundle\Entity\Identite")
      * @ORM\JoinColumn(name="identite_id", referencedColumnName="id", nullable=false, unique=true)
      */
     private $identite;
