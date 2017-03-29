@@ -1,0 +1,67 @@
+{# On utilise ici le layout général #}
+{% extends "JTIRPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+    Bibliothèque de contes - {{ parent() }}
+    {# parent() affiche le reste du block title. On ne fait que rajouter "Accueil - " au titre de la page #}
+{% endblock %}
+
+{% block menu %}
+    <li><a href="{{ path('jtir_platform_index') }}">Accueil</a></li>
+    <li class="active"><a href="{{ path('jtir_eleves_bibliotheque') }}">Bibliothèque de conte</a></li>
+    <li class="dropdown">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+           aria-expanded="false">Interface Elèves <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li><a href="{{ path('jtir_eleves_creation_conte') }}">Créer un conte</a></li>
+            <li><a href="{{ path('jtir_eleves_modifier_conte') }}">Modifier un conte</a></li>
+        </ul>
+    </li>
+    <li><a href="{{ path('jtir_platform_index') }}">Déconnexion</a></li>
+{% endblock %}
+
+{% block body %}
+
+    <!-- RECHERCHE D'UN CONTE -->
+    <section id="bibliotheque_visiteurs">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Bibliothèque de contes</h2>
+                    <hr>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-12">
+                    <p class="description_bibliotheque">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam
+                        provident, porro hic obcaecati pariatur, nihil esse recusandae. Lorem ipsum dolor sit amet,
+                        consectetur adipisicing elit. Tempore, nisi molestias facere non voluptas at perferendis quasi
+                        velit
+                        labore nobis fugiat distinctio fugit accusantium voluptatibus commodi tempora autem quod odio!
+                        Lorem
+                        ipsum dolor sit amet, consectetur adipisicing elit. Amet cum, perspiciatis pariatur culpa iusto
+                        maiores omnis, in odio fugit ullam, praesentium eum, accusamus eligendi! Nisi tenetur quibusdam
+                        omnis, magnam eum!</p>
+                </div>
+            </div>
+            <div id="formulaire_choix">
+                <form action="" class="col-lg-2">
+                    <div class="form-group">
+                        <select name="departement" id="departement" class="form-control color-form">
+                            <option value="" disabled selected>-- Choisissez un élève --</option>
+                            <option value="ct">Céline T</option>
+                            <option value="cm">Christophe M</option>
+                            <option value="jf">Julie F</option>
+                            <option value="jf">Pascal G</option>
+                        </select>
+                    </div>
+                </form>
+
+                {{ include('JTIRPlatformBundle:common:conte.html.twig') }}
+
+            </div>
+        </div>
+    </section>
+    <!-- /#bibliotheque_visiteurs-->
+
+{% endblock %}

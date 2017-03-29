@@ -1,0 +1,14 @@
+#####################################
+# ROUTES POUR LES PAGES ELEVES      #
+#####################################
+jtir_eleves_creation_conte:
+    path:     /eleves/creer-conte
+    defaults: { _controller: JTIRUserBundle:Eleves:creer }
+
+jtir_eleves_modifier_conte:
+    path:     /eleves/modifier-conte
+    defaults: { _controller: JTIRUserBundle:Eleves:modifier }
+
+jtir_eleves_bibliotheque:
+    path:     /eleves/bibliotheque
+    defaults: { _controller: JTIRUserBundle:Eleves:bibliotheque }

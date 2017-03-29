@@ -1,0 +1,376 @@
+{# On utilise ici le layout général #}
+{% extends "JTIRPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+    Créer mon conte - {{ parent() }}
+    {# parent() affiche le reste du block title défini dans le layout général. On ne rajoute que "Créer mon conte - "
+    au titre de la page#}
+{% endblock %}
+
+{% block menu %}
+    <li><a href="{{ path('jtir_platform_index') }}">Accueil</a></li>
+    <li><a href="{{ path('jtir_eleves_bibliotheque') }}">Bibliothèque de conte</a></li>
+    <li class="dropdown active">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+           aria-expanded="false">Interface Elèves <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li><a href="{{ path('jtir_eleves_creation_conte') }}">Créer un conte</a></li>
+            <li><a href="{{ path('jtir_eleves_modifier_conte') }}">Modifier un conte</a></li>
+        </ul>
+    </li>
+    <li><a href="{{ path('jtir_platform_index') }}">Déconnexion</a></li>
+{% endblock %}
+
+{% block body %}
+
+    <!-- SECTION CREER UN CONTE -->
+    <section id="creer_conte">
+        <h2>Création d'un conte</h2>
+        <hr>
+        <div class="alert alert-danger alert_mobile">
+            <strong>Vous ne pouvez pas créer de conte depuis votre téléphone</strong>
+        </div>
+        <form action="" id="form_titre">
+            <label for="titre">Titre de mon conte :</label>
+            <input type="text" name="titre" id="titre">
+        </form>
+        <div class="container-fluid">
+            <div id="formulaire_choix">
+                <!-- SECTION ECRITURE DU CONTE -->
+                <section class="col-lg-7" id="conte">
+                    <ul class="nav nav-tabs" id="onglets">
+                        <li class="active"><a href="#situation_initiale" data-toggle="tab">Situation Initiale</a></li>
+                        <li><a href="#element_declencheur" data-toggle="tab">Elément déclencheur</a></li>
+                        <li><a href="#peripetie" data-toggle="tab">Péripétie</a></li>
+                        <li><a href="#denouement" data-toggle="tab">Dénouement</a></li>
+                        <li><a href="#situation_finale" data-toggle="tab">Situation finale</a></li>
+                    </ul>
+                    <div class="tab-content content_bibliotheque">
+                        <div class="tab-pane active fade in" id="situation_initiale">
+                            <h1>La Belle au bois dormant</h1>
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non accusamus voluptas rem veniam
+                                nobis architecto dolorem dolorum recusandae quia! Atque non ut doloremque, consequuntur
+                                tempora minima dolorem eligendi eos autem! Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit. Beatae deleniti alias error, similique fuga maxime soluta labore
+                                necessitatibus numquam delectus. Delectus cupiditate perspiciatis quam, cumque molestiae ea
+                                quas eaque quaerat. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam optio
+                                quisquam, labore quaerat, vel delectus iusto consequuntur ex provident cupiditate.
+                                Accusantium quia, laboriosam ipsa distinctio facilis necessitatibus. Minus aspernatur,
+                                eaque? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti at perferendis
+                                iusto totam accusantium inventore ipsa quidem asperiores, aut culpa labore, possimus magnam
+                                numquam sequi aspernatur enim. Ab, omnis. Reiciendis. Lorem ipsum dolor sit amet,
+                                consectetur adipisicing elit. Non accusamus voluptas rem veniam nobis architecto dolorem
+                                dolorum recusandae quia! Atque non ut doloremque, consequuntur tempora minima dolorem
+                                eligendi eos autem! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
+                                deleniti alias error, similique fuga maxime soluta labore necessitatibus numquam delectus.
+                                Delectus cupiditate perspiciatis quam, cumque molestiae ea quas eaque quaerat. Lorem ipsum
+                                dolor sit amet, consectetur adipisicing elit. Totam optio quisquam, labore quaerat, vel
+                                delectus iusto consequuntur ex provident cupiditate. Accusantium quia, laboriosam ipsa
+                                distinctio facilis necessitatibus. Minus aspernatur, eaque? Lorem ipsum dolor sit amet,
+                                consectetur adipisicing elit. Deleniti at perferendis iusto totam accusantium inventore ipsa
+                                quidem asperiores, aut culpa labore, possimus magnam numquam sequi aspernatur enim. Ab,
+                                omnis. Reiciendis.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non accusamus
+                                voluptas rem veniam nobis architecto dolorem dolorum recusandae quia! Atque non ut
+                                doloremque, consequuntur tempora minima dolorem eligendi eos autem! Lorem ipsum dolor sit
+                                amet, consectetur adipisicing elit. Beatae deleniti alias error, similique fuga maxime
+                                soluta labore necessitatibus numquam delectus. Delectus cupiditate perspiciatis quam, cumque
+                                molestiae ea quas eaque quaerat. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                Totam optio quisquam, labore quaerat, vel delectus iusto consequuntur ex provident
+                                cupiditate. Accusantium quia, laboriosam ipsa distinctio facilis necessitatibus. Minus
+                                aspernatur, eaque? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti at
+                                perferendis iusto totam accusantium inventore ipsa quidem asperiores, aut culpa labore,
+                                possimus magnam numquam sequi aspernatur enim. Ab, omnis. Reiciendis.</p>
+                        </div>
+                        <div class="tab-pane fade" id="element_declencheur">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non accusamus voluptas rem veniam
+                                nobis architecto dolorem dolorum recusandae quia! Atque non ut doloremque, consequuntur
+                                tempora minima dolorem eligendi eos autem! Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit. Beatae deleniti alias error, similique fuga maxime soluta labore
+                                necessitatibus numquam delectus. Delectus cupiditate perspiciatis quam, cumque molestiae ea
+                                quas eaque quaerat. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam optio
+                                quisquam, labore quaerat, vel delectus iusto consequuntur ex provident cupiditate.
+                                Accusantium quia, laboriosam ipsa distinctio facilis necessitatibus. Minus aspernatur,
+                                eaque? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti at perferendis
+                                iusto totam accusantium inventore ipsa quidem asperiores, aut culpa labore, possimus magnam
+                                numquam sequi aspernatur enim. Ab, omnis. Reiciendis. Lorem ipsum dolor sit amet,
+                                consectetur adipisicing elit. Non accusamus voluptas rem veniam nobis architecto dolorem
+                                dolorum recusandae quia! Atque non ut doloremque, consequuntur tempora minima dolorem
+                                eligendi eos autem! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
+                                deleniti alias error, similique fuga maxime soluta labore necessitatibus numquam delectus.
+                                Delectus cupiditate perspiciatis quam, cumque molestiae ea quas eaque quaerat. Lorem ipsum
+                                dolor sit amet, consectetur adipisicing elit. Totam optio quisquam, labore quaerat, vel
+                                delectus iusto consequuntur ex provident cupiditate. Accusantium quia, laboriosam ipsa
+                                distinctio facilis necessitatibus. Minus aspernatur, eaque? Lorem ipsum dolor sit amet,
+                                consectetur adipisicing elit. Deleniti at perferendis iusto totam accusantium inventore ipsa
+                                quidem asperiores, aut culpa labore, possimus magnam numquam sequi aspernatur enim. Ab,
+                                omnis. Reiciendis.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non accusamus
+                                voluptas rem veniam nobis architecto dolorem dolorum recusandae quia! Atque non ut
+                                doloremque, consequuntur tempora minima dolorem eligendi eos autem! Lorem ipsum dolor sit
+                                amet, consectetur adipisicing elit. Beatae deleniti alias error, similique fuga maxime
+                                soluta labore necessitatibus numquam delectus. Delectus cupiditate perspiciatis quam, cumque
+                                molestiae ea quas eaque quaerat. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                Totam optio quisquam, labore quaerat, vel delectus iusto consequuntur ex provident
+                                cupiditate. Accusantium quia, laboriosam ipsa distinctio facilis necessitatibus. Minus
+                                aspernatur, eaque? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti at
+                                perferendis iusto totam accusantium inventore ipsa quidem asperiores, aut culpa labore,
+                                possimus magnam numquam sequi aspernatur enim. Ab, omnis. Reiciendis.</p>
+                        </div>
+                        <div class="tab-pane fade" id="peripetie">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non accusamus voluptas rem veniam
+                                nobis architecto dolorem dolorum recusandae quia! Atque non ut doloremque, consequuntur
+                                tempora minima dolorem eligendi eos autem! Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit. Beatae deleniti alias error, similique fuga maxime soluta labore
+                                necessitatibus numquam delectus. Delectus cupiditate perspiciatis quam, cumque molestiae ea
+                                quas eaque quaerat. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam optio
+                                quisquam, labore quaerat, vel delectus iusto consequuntur ex provident cupiditate.
+                                Accusantium quia, laboriosam ipsa distinctio facilis necessitatibus. Minus aspernatur,
+                                eaque? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti at perferendis
+                                iusto totam accusantium inventore ipsa quidem asperiores, aut culpa labore, possimus magnam
+                                numquam sequi aspernatur enim. Ab, omnis. Reiciendis. Lorem ipsum dolor sit amet,
+                                consectetur adipisicing elit. Non accusamus voluptas rem veniam nobis architecto dolorem
+                                dolorum recusandae quia! Atque non ut doloremque, consequuntur tempora minima dolorem
+                                eligendi eos autem! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
+                                deleniti alias error, similique fuga maxime soluta labore necessitatibus numquam delectus.
+                                Delectus cupiditate perspiciatis quam, cumque molestiae ea quas eaque quaerat. Lorem ipsum
+                                dolor sit amet, consectetur adipisicing elit. Totam optio quisquam, labore quaerat, vel
+                                delectus iusto consequuntur ex provident cupiditate. Accusantium quia, laboriosam ipsa
+                                distinctio facilis necessitatibus. Minus aspernatur, eaque? Lorem ipsum dolor sit amet,
+                                consectetur adipisicing elit. Deleniti at perferendis iusto totam accusantium inventore ipsa
+                                quidem asperiores, aut culpa labore, possimus magnam numquam sequi aspernatur enim. Ab,
+                                omnis. Reiciendis.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non accusamus
+                                voluptas rem veniam nobis architecto dolorem dolorum recusandae quia! Atque non ut
+                                doloremque, consequuntur tempora minima dolorem eligendi eos autem! Lorem ipsum dolor sit
+                                amet, consectetur adipisicing elit. Beatae deleniti alias error, similique fuga maxime
+                                soluta labore necessitatibus numquam delectus. Delectus cupiditate perspiciatis quam, cumque
+                                molestiae ea quas eaque quaerat. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                Totam optio quisquam, labore quaerat, vel delectus iusto consequuntur ex provident
+                                cupiditate. Accusantium quia, laboriosam ipsa distinctio facilis necessitatibus. Minus
+                                aspernatur, eaque? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti at
+                                perferendis iusto totam accusantium inventore ipsa quidem asperiores, aut culpa labore,
+                                possimus magnam numquam sequi aspernatur enim. Ab, omnis. Reiciendis.</p>
+                        </div>
+                        <div class="tab-pane fade" id="denouement">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non accusamus voluptas rem veniam
+                                nobis architecto dolorem dolorum recusandae quia! Atque non ut doloremque, consequuntur
+                                tempora minima dolorem eligendi eos autem! Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit. Beatae deleniti alias error, similique fuga maxime soluta labore
+                                necessitatibus numquam delectus. Delectus cupiditate perspiciatis quam, cumque molestiae ea
+                                quas eaque quaerat. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam optio
+                                quisquam, labore quaerat, vel delectus iusto consequuntur ex provident cupiditate.
+                                Accusantium quia, laboriosam ipsa distinctio facilis necessitatibus. Minus aspernatur,
+                                eaque? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti at perferendis
+                                iusto totam accusantium inventore ipsa quidem asperiores, aut culpa labore, possimus magnam
+                                numquam sequi aspernatur enim. Ab, omnis. Reiciendis. Lorem ipsum dolor sit amet,
+                                consectetur adipisicing elit. Non accusamus voluptas rem veniam nobis architecto dolorem
+                                dolorum recusandae quia! Atque non ut doloremque, consequuntur tempora minima dolorem
+                                eligendi eos autem! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
+                                deleniti alias error, similique fuga maxime soluta labore necessitatibus numquam delectus.
+                                Delectus cupiditate perspiciatis quam, cumque molestiae ea quas eaque quaerat. Lorem ipsum
+                                dolor sit amet, consectetur adipisicing elit. Totam optio quisquam, labore quaerat, vel
+                                delectus iusto consequuntur ex provident cupiditate. Accusantium quia, laboriosam ipsa
+                                distinctio facilis necessitatibus. Minus aspernatur, eaque? Lorem ipsum dolor sit amet,
+                                consectetur adipisicing elit. Deleniti at perferendis iusto totam accusantium inventore ipsa
+                                quidem asperiores, aut culpa labore, possimus magnam numquam sequi aspernatur enim. Ab,
+                                omnis. Reiciendis.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non accusamus
+                                voluptas rem veniam nobis architecto dolorem dolorum recusandae quia! Atque non ut
+                                doloremque, consequuntur tempora minima dolorem eligendi eos autem! Lorem ipsum dolor sit
+                                amet, consectetur adipisicing elit. Beatae deleniti alias error, similique fuga maxime
+                                soluta labore necessitatibus numquam delectus. Delectus cupiditate perspiciatis quam, cumque
+                                molestiae ea quas eaque quaerat. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                Totam optio quisquam, labore quaerat, vel delectus iusto consequuntur ex provident
+                                cupiditate. Accusantium quia, laboriosam ipsa distinctio facilis necessitatibus. Minus
+                                aspernatur, eaque? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti at
+                                perferendis iusto totam accusantium inventore ipsa quidem asperiores, aut culpa labore,
+                                possimus magnam numquam sequi aspernatur enim. Ab, omnis. Reiciendis.</p>
+                        </div>
+                        <div class="tab-pane fade" id="situation_finale">
+                            <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non accusamus voluptas rem veniam
+                                nobis architecto dolorem dolorum recusandae quia! Atque non ut doloremque, consequuntur
+                                tempora minima dolorem eligendi eos autem! Lorem ipsum dolor sit amet, consectetur
+                                adipisicing elit. Beatae deleniti alias error, similique fuga maxime soluta labore
+                                necessitatibus numquam delectus. Delectus cupiditate perspiciatis quam, cumque molestiae ea
+                                quas eaque quaerat. Lorem ipsum dolor sit amet, consectetur adipisicing elit. Totam optio
+                                quisquam, labore quaerat, vel delectus iusto consequuntur ex provident cupiditate.
+                                Accusantium quia, laboriosam ipsa distinctio facilis necessitatibus. Minus aspernatur,
+                                eaque? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti at perferendis
+                                iusto totam accusantium inventore ipsa quidem asperiores, aut culpa labore, possimus magnam
+                                numquam sequi aspernatur enim. Ab, omnis. Reiciendis. Lorem ipsum dolor sit amet,
+                                consectetur adipisicing elit. Non accusamus voluptas rem veniam nobis architecto dolorem
+                                dolorum recusandae quia! Atque non ut doloremque, consequuntur tempora minima dolorem
+                                eligendi eos autem! Lorem ipsum dolor sit amet, consectetur adipisicing elit. Beatae
+                                deleniti alias error, similique fuga maxime soluta labore necessitatibus numquam delectus.
+                                Delectus cupiditate perspiciatis quam, cumque molestiae ea quas eaque quaerat. Lorem ipsum
+                                dolor sit amet, consectetur adipisicing elit. Totam optio quisquam, labore quaerat, vel
+                                delectus iusto consequuntur ex provident cupiditate. Accusantium quia, laboriosam ipsa
+                                distinctio facilis necessitatibus. Minus aspernatur, eaque? Lorem ipsum dolor sit amet,
+                                consectetur adipisicing elit. Deleniti at perferendis iusto totam accusantium inventore ipsa
+                                quidem asperiores, aut culpa labore, possimus magnam numquam sequi aspernatur enim. Ab,
+                                omnis. Reiciendis.Lorem ipsum dolor sit amet, consectetur adipisicing elit. Non accusamus
+                                voluptas rem veniam nobis architecto dolorem dolorum recusandae quia! Atque non ut
+                                doloremque, consequuntur tempora minima dolorem eligendi eos autem! Lorem ipsum dolor sit
+                                amet, consectetur adipisicing elit. Beatae deleniti alias error, similique fuga maxime
+                                soluta labore necessitatibus numquam delectus. Delectus cupiditate perspiciatis quam, cumque
+                                molestiae ea quas eaque quaerat. Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+                                Totam optio quisquam, labore quaerat, vel delectus iusto consequuntur ex provident
+                                cupiditate. Accusantium quia, laboriosam ipsa distinctio facilis necessitatibus. Minus
+                                aspernatur, eaque? Lorem ipsum dolor sit amet, consectetur adipisicing elit. Deleniti at
+                                perferendis iusto totam accusantium inventore ipsa quidem asperiores, aut culpa labore,
+                                possimus magnam numquam sequi aspernatur enim. Ab, omnis. Reiciendis.</p>
+                        </div>
+                    </div>
+                </section>
+                <!-- /SECTION ECRITURE DU CONTE -->
+
+                <!-- SECTION CHOIX SONS ET IMAGES -->
+                <section class="col-lg-5" id="banques">
+                    <ul class="nav nav-tabs" id="onglets">
+                        <li class="active"><a href="#sons" data-toggle="tab">Banque de sons</a></li>
+                        <li><a href="#personnages" data-toggle="tab">Personnages</a></li>
+                        <li><a href="#animaux" data-toggle="tab">Animaux</a></li>
+                        <li><a href="#decors" data-toggle="tab">Décors</a></li>
+                        <li><a href="#objets" data-toggle="tab">Objets</a></li>
+                    </ul>
+                    <div class="tab-content content_bibliotheque">
+                        <div class="tab-pane active fade in" id="sons">
+                            <div class="row">
+                                <div class="col-lg-12" id="banque_sons">
+                                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3 sons">
+                                        <img src="../../img/sons/speaker.png" alt="" class="carte center-block">
+                                        <p class="text-center">Coup de feu</p>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3 sons">
+                                        <img src="../../img/sons/speaker.png" alt="" class="carte center-block">
+                                        <p class="text-center">Porte</p>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3 sons">
+                                        <img src="../../img/sons/speaker.png" alt="" class="carte center-block">
+                                        <p class="text-center">Vent</p>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3 sons">
+                                        <img src="../../img/sons/speaker.png" alt="" class="carte center-block">
+                                        <p class="text-center">Pluie</p>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3 sons">
+                                        <img src="../../img/sons/speaker.png" alt="" class="carte center-block">
+                                        <p class="text-center">Crépitements</p>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3 sons">
+                                        <img src="../../img/sons/speaker.png" alt="" class="carte center-block">
+                                        <p class="text-center">Loup</p>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3 sons">
+                                        <img src="../../img/sons/speaker.png" alt="" class="carte center-block">
+                                        <p class="text-center">hibou</p>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3 sons">
+                                        <img src="../../img/sons/speaker.png" alt="" class="carte center-block">
+                                        <p class="text-center">Chauve souris</p>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3 sons">
+                                        <img src="../../img/sons/speaker.png" alt="" class="carte center-block">
+                                        <p class="text-center">Coup de feu</p>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3 sons">
+                                        <img src="../../img/sons/speaker.png" alt="" class="carte center-block">
+                                        <p class="text-center">Porte</p>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3 sons">
+                                        <img src="../../img/sons/speaker.png" alt="" class="carte center-block">
+                                        <p class="text-center">Vent</p>
+                                    </div>
+                                    <div class="col-xs-4 col-sm-3 col-md-3 col-lg-3 sons">
+                                        <img src="../../img/sons/speaker.png" alt="" class="carte center-block">
+                                        <p class="text-center">Pluie</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="personnages">
+                            <div class="row">
+                                <div class="col-lg-12" id="cartes_personnages">
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 personnages"><img src="../../img/cartes/Angel.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 personnages"><img src="../../img/cartes/Baby.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 personnages"><img src="../../img/cartes/Boy.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 personnages"><img src="../../img/cartes/boy-PNG.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 personnages"><img src="../../img/cartes/child-PNG.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 personnages"><img src="../../img/cartes/Cowboy.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 personnages"><img src="../../img/cartes/Elf.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 personnages"><img src="../../img/cartes/fairy-PNG.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 personnages"><img src="../../img/cartes/elf-PNG.png" alt="" class="carte"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="animaux">
+                            <div class="row">
+                                <div class="col-lg-12" id="cartes_animaux">
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 animaux"><img src="../../img/cartes/Alligator.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 animaux"><img src="../../img/cartes/Alligator_2.png" alt="alligator" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 animaux"><img src="../../img/cartes/Bat.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 animaux"><img src="../../img/cartes/bat-PNG.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 animaux"><img src="../../img/cartes/bats-clipart-PNG.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 animaux"><img src="../../img/cartes/bear-PNG.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 animaux"><img src="../../img/cartes/bird-PNG.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 animaux"><img src="../../img/cartes/black-cat-PNG.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 animaux"><img src="../../img/cartes/bunny-PNG.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 animaux"><img src="../../img/cartes/Cat.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 animaux"><img src="../../img/cartes/Cat_2.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 animaux"><img src="../../img/cartes/cat-PNG.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 animaux"><img src="../../img/cartes/chicken-PNG.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 animaux"><img src="../../img/cartes/Cow.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 animaux"><img src="../../img/cartes/cow-PNG.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 animaux"><img src="../../img/cartes/dog-PNG.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 animaux"><img src="../../img/cartes/donkey-PNG.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 animaux"><img src="../../img/cartes/duck-PNG.png" alt="" class="carte"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="decors">
+                            <div class="row">
+                                <div class="col-lg-12" id="cartes_decors">
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 decors"><img src="../../img/cartes/Beach.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 decors"><img src="../../img/cartes/City.png" alt="" class="carte"></div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="tab-pane fade" id="objets">
+                            <div class="row">
+                                <div class="col-lg-12" id="cartes_objets">
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 objets"><img src="../../img/cartes/Balloon.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 objets"><img src="../../img/cartes/basket-PNG.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 objets"><img src="../../img/cartes/Bell.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 objets"><img src="../../img/cartes/Boat.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 objets"><img src="../../img/cartes/Book.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 objets"><img src="../../img/cartes/candle-clipart-PNG.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 objets"><img src="../../img/cartes/candle-PNG.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 objets"><img src="../../img/cartes/Canoe.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 objets"><img src="../../img/cartes/clipart-book-PNG.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 objets"><img src="../../img/cartes/Crown.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 objets"><img src="../../img/cartes/crown-clipart-PNG.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 objets"><img src="../../img/cartes/crown-PNG.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 objets"><img src="../../img/cartes/diploma-clipart-PNG.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 nourriture"><img src="../../img/cartes/apple-PNG.png" alt="pomme" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 nourriture"><img src="../../img/cartes/candy-cane-PNG.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 nourriture"><img src="../../img/cartes/candy-PNG.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 nourriture"><img src="../../img/cartes/cheese-PNG.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 nourriture"><img src="../../img/cartes/cookie-PNG.png" alt="" class="carte"></div>
+                                    <div class="col-xs-4 col-sm-3 col-md-2 col-lg-2 nourriture"><img src="../../img/cartes/cupcake-PNG.png" alt="" class="carte"></div>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                </section>
+                <!-- /SECTION CHOIX SONS ET IMAGES -->
+            </div>
+
+            <!-- BOUTON ENREGISTRER -->
+            <div class="col-lg-12 center-block" id="ensemble_bouton">
+                <img src="../../img/cartes/knight-PNG.png" alt="" id="chevalier">
+                <img src="../../img/cartes/Alligator.png" alt="" id="alligator">
+                <button class="btn btn-def btn-form" id="bouton_enregistrer">ENREGISTRER</button>
+            </div>
+            <!-- /BOUTON ENREGISTRER -->
+        </div>
+    </section>
+    <!-- /SECTION CREER UN CONTE -->
+{% endblock %}
