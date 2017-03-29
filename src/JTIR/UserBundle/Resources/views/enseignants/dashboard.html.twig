@@ -1,0 +1,221 @@
+{# On utilise ici le layout général, qui se situe dans le CoreBundle #}
+{% extends "JTIRPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+    Tableau de bord - {{ parent() }}
+    {# parent() affiche le reste du block title. On ne fait que rajouter "Accueil - " au titre de la page #}
+{% endblock %}
+
+{% block menu %}
+    <li><a href="{{ path('jtir_platform_index') }}">Accueil</a></li>
+    <li class="dropdown active">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+           aria-haspopup="true" aria-expanded="false">Interface Enseignants <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li><a href="{{ path('jtir_platform_inscrire_classe') }}">Inscrire une classe</a></li>
+            <li><a href="{{ path('jtir_platform_bibliotheque_enseignant') }}">Sélectionner un conte</a></li>
+            <li><a href="{{ path('jtir_platform_partenariat') }}">Créer un partenariat</a></li>
+            <li><a href="{{ path('jtir_platform_dashboard') }}">Tableau de bord</a></li>
+        </ul>
+    </li>
+    <li><a href="{{ path('jtir_platform_tuto') }}">Tutoriels</a></li>
+    <li><a href="{{ path('jtir_platform_index') }}">Déconnexion</a></li>
+{% endblock %}
+
+{% block body %}
+
+    <!-- DASHBOARD -->
+    <section id="section_enseignants">
+        <div class="container">
+
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Tableau de bord</h2>
+                    <hr>
+                </div>
+
+                <div class="col-lg-12 block-classe">
+                    <div class="col-lg-6">
+                        <div class="cache"></div>
+                        <div id="chartContainer" style="width: 100%; height: 300px"></div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="cache"></div>
+                        <div id="chartContainer2" style="width: 100%; height: 300px"></div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="cache"></div>
+                        <div id="chartContainer3" style="width: 100%; height: 300px"></div>
+                    </div>
+
+                    <div class="col-lg-6">
+                        <div class="cache"></div>
+                        <div id="chartContainer4" style="width: 100%; height: 300px"></div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <!-- /DASHBOARD -->
+
+{% endblock %}
+
+{% block javascripts %}
+
+    <!-- Script pour les piecharts -->
+    <script type="text/javascript" src="{{ asset('bundles/jtirplatform/js/jquery.canvasjs.min.js') }}"></script>
+    <script type="text/javascript">
+        window.onload = function () {
+            $("#chartContainer").CanvasJSChart({
+                title: {
+                    text: "Ma classe",
+                    fontSize: 24,
+                    fontFamily: "Lobster"
+                },
+                axisY: {
+                    title: "Etat d'avancements des contes"
+                },
+                legend: {
+                    verticalAlign: "center",
+                    horizontalAlign: "right"
+                },
+                data: [
+                    {
+                        type: "pie",
+                        showInLegend: true,
+                        toolTipContent: "{label} <br/> {y}",
+                        indexLabel: "{y}",
+                        dataPoints: [
+                            {label: "En cours", y: 8, legendText: "En cours"},
+                            {label: "Publiés", y: 4, legendText: "Publiés"},
+                            {label: "Attente de correction", y: 3, legendText: "Attente de correction"},
+                            {label: "Achevés", y: 3, legendText: "Achevés"},
+                            {label: "Attente de publication", y: 2, legendText: "Attente de publication"}
+                        ]
+                    }
+                ]
+            });
+
+            $("#chartContainer2").CanvasJSChart({
+                title: {
+                    text: "Mes classes partenaires",
+                    fontSize: 24,
+                    fontFamily: "Lobster"
+                },
+                axisY: {
+                    title: "Etat d'avancements des contes"
+                },
+                legend: {
+                    verticalAlign: "center",
+                    horizontalAlign: "right"
+                },
+                data: [
+                    {
+                        type: "pie",
+                        showInLegend: true,
+                        toolTipContent: "{label} <br/> {y}",
+                        indexLabel: "{y}",
+                        dataPoints: [
+                            {label: "En cours", y: 6, legendText: "En cours"},
+                            {label: "Publiés", y: 5, legendText: "Publiés"},
+                            {label: "Attente de correction", y: 2, legendText: "Attente de correction"},
+                            {label: "Achevés", y: 4, legendText: "Achevés"},
+                            {label: "Attente de publication", y: 1, legendText: "Attente de publication"}
+
+                        ]
+                    }
+                ]
+            });
+
+            $("#chartContainer3").CanvasJSChart({
+                title: {
+                    text: "Nombre de conte par élève",
+                    fontSize: 24,
+                    fontFamily: "Lobster"
+                },
+                axisY: {
+                    title: "Nombre de conte"
+                },
+                legend: {
+                    verticalAlign: "center",
+                    horizontalAlign: "right"
+                },
+                data: [
+                    {
+                        toolTipContent: "{label} <br/> {y}",
+                        indexLabel: "{y}",
+                        dataPoints: [
+                            {label: "Stephan F", y: 1, legendText: "Stephan F"},
+                            {label: "Christophe M", y: 0, legendText: "Christophe M"},
+                            {label: "Jonathan M", y: 2, legendText: "Jonathan M"},
+                            {label: "Pascal G", y: 4, legendText: "Pascal G"},
+                            {label: "Élève 5", y: 0, legendText: "Élève 5"},
+                            {label: "Élève 6", y: 1, legendText: "Élève 6"},
+                            {label: "Élève 7", y: 0, legendText: "Élève 7"},
+                            {label: "Élève 8", y: 1, legendText: "Élève 8"},
+                            {label: "Élève 9", y: 2, legendText: "Élève 9"},
+                            {label: "Élève 10", y: 1, legendText: "Élève 10"},
+                            {label: "Élève 11", y: 0, legendText: "Élève 11"},
+                            {label: "Élève 12", y: 0, legendText: "Élève 12"},
+                            {label: "Élève 13", y: 1, legendText: "Élève 13"},
+                            {label: "Élève 14", y: 3, legendText: "Élève 14"},
+                            {label: "Élève 15", y: 0, legendText: "Élève 15"},
+                            {label: "Élève 16", y: 1, legendText: "Élève 16"},
+                            {label: "Élève 17", y: 1, legendText: "Élève 17"},
+                            {label: "Élève 18", y: 2, legendText: "Élève 18"},
+                            {label: "Élève 19", y: 1, legendText: "Élève 19"},
+                            {label: "Élève 20", y: 0, legendText: "Élève 20"}
+                        ]
+                    }
+                ]
+            });
+
+            $("#chartContainer4").CanvasJSChart({
+                title: {
+                    text: "Nombre de lectures par conte",
+                    fontSize: 24,
+                    fontFamily: "Lobster"
+                },
+                axisY: {
+                    title: "Nombre de lectures"
+                },
+                legend: {
+                    verticalAlign: "center",
+                    horizontalAlign: "right"
+                },
+                data: [
+                    {
+                        toolTipContent: "{label} <br/> {y}",
+                        indexLabel: "{y}",
+                        dataPoints: [
+                            {label: "Conte 12", y: 45, legendText: "Conte 12"},
+                            {label: "Conte 17", y: 42, legendText: "Conte 17"},
+                            {label: "Conte 18", y: 38, legendText: "Conte 18"},
+                            {label: "Conte 9", y: 36, legendText: "Conte 9"},
+                            {label: "Conte 5", y: 36, legendText: "Conte 5"},
+                            {label: "Conte 19", y: 29, legendText: "Conte 19"},
+                            {label: "Conte 14", y: 26, legendText: "Conte 14"},
+                            {label: "Conte 2", y: 23, legendText: "Conte 2"},
+                            {label: "Conte 11", y: 23, legendText: "Conte 11"},
+                            {label: "Conte 1", y: 21, legendText: "Conte 1"},
+                            {label: "Conte 15", y: 17, legendText: "Conte 15"},
+                            {label: "Conte 10", y: 15, legendText: "Conte 10"},
+                            {label: "Conte 13", y: 15, legendText: "Conte 13"},
+                            {label: "Conte 7", y: 14, legendText: "Conte 7"},
+                            {label: "Conte 6", y: 12, legendText: "Conte 6"},
+                            {label: "Conte 4", y: 9, legendText: "Conte 4"},
+                            {label: "Conte 8", y: 9, legendText: "Conte 8"},
+                            {label: "Conte 16", y: 9, legendText: "Conte 16"},
+                            {label: "Conte 20", y: 9, legendText: "Conte 20"},
+                            {label: "Conte 3", y: 6, legendText: "Conte 3"}
+                        ]
+                    }
+                ]
+            });
+        };
+    </script>
+
+{% endblock %}

@@ -1,0 +1,145 @@
+{# On utilise ici le layout général, qui se situe dans le CoreBundle #}
+{% extends "JTIRPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+    Créer ma classe - {{ parent() }}
+    {# parent() affiche le reste du block title. On ne fait que rajouter "Accueil - " au titre de la page #}
+{% endblock %}
+
+{% block menu %}
+    <li><a href="{{ path('jtir_platform_index') }}">Accueil</a></li>
+    <li class="dropdown active">
+        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button"
+           aria-haspopup="true" aria-expanded="false">Interface Enseignants <span class="caret"></span></a>
+        <ul class="dropdown-menu">
+            <li><a href="{{ path('jtir_platform_inscrire_classe') }}">Inscrire une classe</a></li>
+            <li><a href="{{ path('jtir_platform_bibliotheque_enseignant') }}">Sélectionner un conte</a></li>
+            <li><a href="{{ path('jtir_platform_partenariat') }}">Créer un partenariat</a></li>
+            <li><a href="{{ path('jtir_platform_dashboard') }}">Tableau de bord</a></li>
+        </ul>
+    </li>
+    <li><a href="{{ path('jtir_platform_tuto') }}">Tutoriels</a></li>
+    <li><a href="{{ path('jtir_platform_index') }}">Déconnexion</a></li>
+{% endblock %}
+
+{% block body %}
+
+    <!-- SECTION INSCRIRE CLASSE -->
+    <section id="section_enseignants">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-10 col-lg-offset-1">
+                    <h2>Inscrire une classe</h2>
+                    <hr>
+                </div>
+            </div>
+
+            <form action="#">
+
+                <div class="row">
+                    <div class="col-lg-10 col-lg-offset-1 col-sm-10 col-sm-offset-1 block-classe">
+                        <img src="{{ asset('img/child.png') }}" alt="Un enfant" id="enfant">
+                        <img src="{{ asset('img/lady.png') }}" alt="Une demoiselle" id="demoiselle">
+
+                        <div class="col-lg-4">
+                            <img src="{{ asset('img/notebook.png') }}" alt="Un cahier" id="cahier">
+
+                            <h3 class="text-center">Votre classe</h3>
+                            <hr class="small-hr">
+
+                            <div class="form-group">
+                                <label for="departement">Département de votre classe :</label>
+                                <select name="departement" id="departement" class="form-control">
+                                    <option value="" disabled selected>-- Choisissez un département --</option>
+                                    <option value="ain">01 - Ain</option>
+                                    <option value="aisne">02 - Aisne</option>
+                                    <option value="allier">03 - Allier</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="ville">Ville de votre classe :</label>
+                                <select name="ville" id="ville" class="form-control">
+                                    <option value="" disabled selected>-- Choisissez une ville --</option>
+                                    <option value="abbecourt">Abbécourt</option>
+                                    <option value="achery">Achery</option>
+                                    <option value="Agnicourt_et_sechelles">Agnicourt-et-Séchelles</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="etablissement">Établissement de votre classe :</label>
+                                <input type="text" autocomplete="on" id="etablissement" class="form-control">
+                            </div>
+                            <div class="form-group">
+                                <label for="niveau">Niveau de votre classe :</label>
+                                <select name="niveau" id="niveau" class="form-control">
+                                    <option value="" disabled selected>-- Choisissez un niveau --</option>
+                                    <option value="gs">Grande section de maternelle</option>
+                                    <option value="cp">CP</option>
+                                    <option value="ce1">CE1</option>
+                                </select>
+                            </div>
+                        </div>
+
+                        <div class="col-lg-8">
+                            <h3 class="text-center">Vos élèves</h3>
+                            <hr class="small-hr">
+
+                            <table class="table table-responsive table-bordered" id="table-eleve">
+                                <thead class="table-classe">
+                                <tr>
+                                    <td class="nombre-eleve text-center">#</td>
+                                    <td>Nom</td>
+                                    <td>Prénom</td>
+                                    <td>Mot de passe</td>
+                                </tr>
+                                </thead>
+                                <tbody>
+                                <tr>
+                                    <td class="eleve nombre-eleve">1</td>
+                                    <td class="eleve"><input type="text" class="form-control input-eleve"></td>
+                                    <td class="eleve"><input type="text" class="form-control input-eleve"></td>
+                                    <td class="eleve"><input type="text" class="form-control input-eleve"></td>
+                                </tr>
+                                <tr>
+                                    <td class="eleve nombre-eleve">2</td>
+                                    <td class="eleve"><input type="text" class="form-control input-eleve"></td>
+                                    <td class="eleve"><input type="text" class="form-control input-eleve"></td>
+                                    <td class="eleve"><input type="text" class="form-control input-eleve"></td>
+                                </tr>
+                                <tr>
+                                    <td class="eleve nombre-eleve">3</td>
+                                    <td class="eleve"><input type="text" class="form-control input-eleve"></td>
+                                    <td class="eleve"><input type="text" class="form-control input-eleve"></td>
+                                    <td class="eleve"><input type="text" class="form-control input-eleve"></td>
+                                </tr>
+                                <tr>
+                                    <td class="eleve nombre-eleve">4</td>
+                                    <td class="eleve"><input type="text" class="form-control input-eleve"></td>
+                                    <td class="eleve"><input type="text" class="form-control input-eleve"></td>
+                                    <td class="eleve"><input type="text" class="form-control input-eleve"></td>
+                                </tr>
+                                <tr>
+                                    <td class="eleve nombre-eleve">5</td>
+                                    <td class="eleve"><input type="text" class="form-control input-eleve"></td>
+                                    <td class="eleve"><input type="text" class="form-control input-eleve"></td>
+                                    <td class="eleve"><input type="text" class="form-control input-eleve"></td>
+                                </tr>
+                                </tbody>
+                            </table>
+
+                            <img src="{{ asset('img/add_icon.png') }}" alt="Ajouter un élève" class="ajout-eleve center-block">
+                        </div>
+
+                        <div class="col-lg-12">
+                            <button type="submit" class="btn btn-def btn-form center-block">Créer ma classe</button>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+    </section>
+    <!-- /SECTION INSCRIRE CLASSE -->
+
+{% endblock %}
