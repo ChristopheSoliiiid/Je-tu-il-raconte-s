@@ -1,0 +1,14 @@
+###################################
+# ROUTES POUR LES PAGES VISITEURS #
+###################################
+jtir_platform_index:
+    path:     /
+    defaults: { _controller: JTIRPlatformBundle:Platform:index }
+
+jtir_platform_inscription:
+    path:     /inscription
+    defaults: { _controller: JTIRPlatformBundle:Platform:inscription }
+
+jtir_platform_bibliotheque_visiteur:
+    path:     /bibliotheque
+    defaults: { _controller: JTIRPlatformBundle:Platform:bibliotheque }

@@ -1,3 +1,15 @@
-app:
-    resource: "@AppBundle/Controller/"
-    type:     annotation
+jtir_cadavre_exquis:
+    resource: "@JTIRCadavreExquisBundle/Resources/config/routing.yml"
+    prefix:   /
+
+jtir_admin:
+    resource: "@JTIRAdminBundle/Resources/config/routing.yml"
+    prefix:   /admin
+
+jtir_user:
+    resource: "@JTIRUserBundle/Resources/config/routing.yml"
+    prefix:   /
+
+jtir_platform:
+    resource: "@JTIRPlatformBundle/Resources/config/routing.yml"
+    prefix:   /

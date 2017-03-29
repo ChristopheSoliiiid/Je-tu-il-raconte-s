@@ -6,11 +6,11 @@ imports:
 # Put parameters here that don't need to change on each machine where the app is deployed
 # http://symfony.com/doc/current/best_practices/configuration.html#application-related-configuration
 parameters:
-    locale: en
+    locale: fr
 
 framework:
     #esi:             ~
-    #translator:      { fallbacks: ["%locale%"] }
+    translator:      { fallbacks: ["%locale%"] }
     secret:          "%secret%"
     router:
         resource: "%kernel.root_dir%/config/routing.yml"
@@ -68,3 +68,23 @@ swiftmailer:
     username:  "%mailer_user%"
     password:  "%mailer_password%"
     spool:     { type: memory }
+
+assetic:
+    debug:          '%kernel.debug%'
+    use_controller: '%kernel.debug%'
+    filters:
+        cssrewrite: ~
+        jsqueeze:   ~
+        scssphp:
+            formatter: 'Leafo\ScssPhp\Formatter\Compressed'
+
+fos_user:
+    db_driver:     orm #Le type de bdd à utiliser, dans notre cas l'ORM Doctrine
+    firewall_name: enseignant #Le nom du firewall derrière lequel on utilisera ces utilisateurs
+    user_class:    JTIR\PlatformBundle\Entity\Enseignant
+    registration:
+        confirmation:
+           enabled: true # Activation d'un email de confirmation pour créer le compte
+    from_email:
+        address:     mchristophe54@gmail.com # Email qui envoie les emails de confirmation, reset password, etc...
+        sender_name: Test email - Je tu il ra...conte(s)

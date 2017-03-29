@@ -1,0 +1,89 @@
+{# On utilise ici le layout général #}
+{% extends "JTIRPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+    Accueil - {{ parent() }}
+    {# parent() affiche le reste du block title. On ne fait que rajouter "Accueil - " au titre de la page #}
+{% endblock %}
+
+{% block menu %}
+    <li class="active"><a href="{{ path('jtir_platform_index') }}">Accueil</a></li>
+    <li><a href="">Connexion</a></li>
+    <li><a href="{{ path('jtir_platform_bibliotheque_visiteur') }}">Bibliothèque de contes</a></li>
+{% endblock %}
+
+{% block body %}
+
+    <!-- HEADER -->
+    <header>
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="intro-text">
+                        <span class="name">Je tu il ra...conte(s)</span>
+                        <hr>
+                        <span class="skills">Production de contes merveilleux en ligne</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- /HEADER-->
+
+    <!-- INTRODUCTION -->
+    <section id="introduction">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <h2>Introduction</h2>
+                    <hr>
+                </div>
+            </div>
+            <div class="row">
+                <div class="col-lg-3">
+                    <p class="intro">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam provident, porro hic
+                        obcaecati pariatur, nihil esse recusandae. Itaque ipsa totam nemo unde quisquam tempora, tenetur
+                        odit magni dolore, ullam repellat.</p>
+                </div>
+                <div class="col-lg-3">
+                    <p class="intro">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam provident, porro hic
+                        obcaecati pariatur, nihil esse recusandae. Itaque ipsa totam nemo unde quisquam tempora, tenetur
+                        odit magni dolore, ullam repellat.</p>
+                </div>
+                <div class="col-lg-3">
+                    <p class="intro">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam provident, porro hic
+                        obcaecati pariatur, nihil esse recusandae. Itaque ipsa totam nemo unde quisquam tempora, tenetur
+                        odit magni dolore, ullam repellat.</p>
+                </div>
+                <div class="col-lg-3">
+                    <p class="intro">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam provident, porro hic
+                        obcaecati pariatur, nihil esse recusandae. Itaque ipsa totam nemo unde quisquam tempora, tenetur
+                        odit magni dolore, ullam repellat.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /#introduction -->
+
+    <!-- BOUTONS -->
+    <section class="button-section">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-offset-2 col-lg-4 col-sm-offset-2 col-sm-4 text-center btn-accueil-margintop">
+                    <img id="panda" src="{{ asset('img/Panda.png') }}" alt="Un panda">
+                    <a href="">
+                        <button class="btn btn-def">CONNEXION</button>
+                    </a>
+                </div>
+                <div class="col-lg-4 col-sm-4 text-center btn-accueil-margintop-duck">
+                    <img id="duck" src="{{ asset('img/duck.png') }}" alt="Un cannard">
+                    <a href="{{ path('jtir_platform_bibliotheque_visiteur') }}">
+                        <button class="btn btn-def">VISITEURS - PARENTS</button>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+    <!-- /.button-section -->
+
+{% endblock %}
