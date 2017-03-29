@@ -36,4 +36,127 @@ class Enseignant
      * @ORM\JoinColumn(name="civilite_id", referencedColumnName="id", nullable=false)
      */
     private $civilite;
+    /**
+     * Constructor
+     */
+    public function __construct()
+    {
+        $this->classe = new \Doctrine\Common\Collections\ArrayCollection();
+    }
+
+    /**
+     * Get id
+     *
+     * @return integer
+     */
+    public function getId()
+    {
+        return $this->id;
+    }
+
+    /**
+     * Set adresse
+     *
+     * @param \JTIR\UserBundle\Entity\Adresse $adresse
+     *
+     * @return Enseignant
+     */
+    public function setAdresse(\JTIR\UserBundle\Entity\Adresse $adresse)
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    /**
+     * Get adresse
+     *
+     * @return \JTIR\UserBundle\Entity\Adresse
+     */
+    public function getAdresse()
+    {
+        return $this->adresse;
+    }
+
+    /**
+     * Set identite
+     *
+     * @param \JTIR\UserBundle\Entity\Identite $identite
+     *
+     * @return Enseignant
+     */
+    public function setIdentite(\JTIR\UserBundle\Entity\Identite $identite)
+    {
+        $this->identite = $identite;
+
+        return $this;
+    }
+
+    /**
+     * Get identite
+     *
+     * @return \JTIR\UserBundle\Entity\Identite
+     */
+    public function getIdentite()
+    {
+        return $this->identite;
+    }
+
+    /**
+     * Add classe
+     *
+     * @param \JTIR\UserBundle\Entity\Classe $classe
+     *
+     * @return Enseignant
+     */
+    public function addClasse(\JTIR\UserBundle\Entity\Classe $classe)
+    {
+        $this->classe[] = $classe;
+
+        return $this;
+    }
+
+    /**
+     * Remove classe
+     *
+     * @param \JTIR\UserBundle\Entity\Classe $classe
+     */
+    public function removeClasse(\JTIR\UserBundle\Entity\Classe $classe)
+    {
+        $this->classe->removeElement($classe);
+    }
+
+    /**
+     * Get classe
+     *
+     * @return \Doctrine\Common\Collections\Collection
+     */
+    public function getClasse()
+    {
+        return $this->classe;
+    }
+
+    /**
+     * Set civilite
+     *
+     * @param \JTIR\UserBundle\Entity\Civilite $civilite
+     *
+     * @return Enseignant
+     */
+    public function setCivilite(\JTIR\UserBundle\Entity\Civilite $civilite)
+    {
+        $this->civilite = $civilite;
+
+        return $this;
+    }
+
+    /**
+     * Get civilite
+     *
+     * @return \JTIR\UserBundle\Entity\Civilite
+     */
+    public function getCivilite()
+    {
+        return $this->civilite;
+    }
 }
