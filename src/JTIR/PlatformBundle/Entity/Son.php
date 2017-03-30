@@ -3,6 +3,7 @@ namespace JTIR\PlatformBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ORM\Table(name="platform_son")
  * @ORM\Entity
  */
 class Son

@@ -4,6 +4,7 @@ namespace JTIR\PlatformBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ORM\Table(name="platform_conte")
  * @ORM\Entity
  */
 class Conte
@@ -64,7 +65,7 @@ class Conte
     /**
      * @ORM\ManyToMany(targetEntity="JTIR\PlatformBundle\Entity\Carte", inversedBy="conte")
      * @ORM\JoinTable(
-     *     name="Conte_Carte",
+     *     name="platform_conte_carte",
      *     joinColumns={@ORM\JoinColumn(name="conte_id", referencedColumnName="id", nullable=false)},
      *     inverseJoinColumns={@ORM\JoinColumn(name="carte_id", referencedColumnName="id", nullable=false)}
      * )
@@ -74,7 +75,7 @@ class Conte
     /**
      * @ORM\ManyToMany(targetEntity="JTIR\PlatformBundle\Entity\Son", inversedBy="conte")
      * @ORM\JoinTable(
-     *     name="Conte_Son",
+     *     name="platform_conte_son",
      *     joinColumns={@ORM\JoinColumn(name="conte_id", referencedColumnName="id", nullable=false)},
      *     inverseJoinColumns={@ORM\JoinColumn(name="son_id", referencedColumnName="id", nullable=false)}
      * )
