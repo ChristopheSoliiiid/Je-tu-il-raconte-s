@@ -87,13 +87,7 @@ ul.nav.navbar-nav {
 
 .navbar-custom .navbar-nav li.active a {
     background: #234;
-    color: darkorange;
-}
-
-.navbar-custom .navbar-nav li.active a:hover,
-.navbar-custom .navbar-nav li.active a:focus {
-    background: #234;
-    color: white;
+    color: #5bc0de;
 }
 
 .navbar-custom .navbar-nav li a,
@@ -117,8 +111,8 @@ header {
 }
 
 header .container {
-    padding-top: 70px;
-    padding-bottom: 100px;
+    padding-top: 35px;
+    padding-bottom: 35px;
 }
 
 .name {
@@ -134,7 +128,7 @@ header .container {
 
 /* INTRODUCTION */
 #introduction {
-    padding: 100px 0;
+    padding: 50px 0;
 }
 
 #introduction .row {
@@ -214,6 +208,11 @@ footer h3 {
 .sitemap {
     list-style: none;
     padding: 0;
+}
+
+.apropos {
+    color: #18BC9C;
+    font-size: 0.8em;
 }
 
 .footer-green {

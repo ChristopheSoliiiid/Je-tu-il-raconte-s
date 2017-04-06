@@ -68,7 +68,11 @@
         var menu = $('#burger_menu');
 
         menu.find('ul > li.dropdown.active').removeClass('active');
-        menu.find('ul > li:nth-child(3)').addClass('active');
+        menu.find('ul > li:nth-child(2)').addClass('active');
     </script>
 
+{% endblock %}
+
+{% block sitemap %}
+    {{ include('JTIRUserBundle:enseignants:sitemap.html.twig') }}
 {% endblock %}
