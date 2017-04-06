@@ -4,6 +4,7 @@ namespace JTIR\PlatformBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
+ * @ORM\Table(name="platform_conte")
  * @ORM\Entity
  */
 class Conte
@@ -46,9 +47,14 @@ class Conte
     private $situationFinale;
 
     /**
-     * @ORM\Column(type="date", nullable=false)
+     * @ORM\Column(type="datetime", nullable=false)
      */
-    private $date;
+    private $date_creation;
+
+    /**
+     * @ORM\Column(type="datetime", nullable=true)
+     */
+    private $date_modification;
 
     /**
      * @ORM\Column(type="boolean", nullable=false, options={"default":true})
@@ -64,7 +70,7 @@ class Conte
     /**
      * @ORM\ManyToMany(targetEntity="JTIR\PlatformBundle\Entity\Carte", inversedBy="conte")
      * @ORM\JoinTable(
-     *     name="Conte_Carte",
+     *     name="platform_conte_carte",
      *     joinColumns={@ORM\JoinColumn(name="conte_id", referencedColumnName="id", nullable=false)},
      *     inverseJoinColumns={@ORM\JoinColumn(name="carte_id", referencedColumnName="id", nullable=false)}
      * )
@@ -74,7 +80,7 @@ class Conte
     /**
      * @ORM\ManyToMany(targetEntity="JTIR\PlatformBundle\Entity\Son", inversedBy="conte")
      * @ORM\JoinTable(
-     *     name="Conte_Son",
+     *     name="platform_conte_son",
      *     joinColumns={@ORM\JoinColumn(name="conte_id", referencedColumnName="id", nullable=false)},
      *     inverseJoinColumns={@ORM\JoinColumn(name="son_id", referencedColumnName="id", nullable=false)}
      * )
@@ -244,30 +250,6 @@ class Conte
     }
 
     /**
-     * Set date
-     *
-     * @param \DateTime $date
-     *
-     * @return Conte
-     */
-    public function setDate($date)
-    {
-        $this->date = $date;
-
-        return $this;
-    }
-
-    /**
-     * Get date
-     *
-     * @return \DateTime
-     */
-    public function getDate()
-    {
-        return $this->date;
-    }
-
-    /**
      * Set partage
      *
      * @param boolean $partage
@@ -381,5 +363,53 @@ class Conte
     public function getSon()
     {
         return $this->son;
+    }
+
+    /**
+     * Set dateCreation
+     *
+     * @param \DateTime $dateCreation
+     *
+     * @return Conte
+     */
+    public function setDateCreation($dateCreation)
+    {
+        $this->date_creation = $dateCreation;
+
+        return $this;
+    }
+
+    /**
+     * Get dateCreation
+     *
+     * @return \DateTime
+     */
+    public function getDateCreation()
+    {
+        return $this->date_creation;
+    }
+
+    /**
+     * Set dateModification
+     *
+     * @param \DateTime $dateModification
+     *
+     * @return Conte
+     */
+    public function setDateModification($dateModification)
+    {
+        $this->date_modification = $dateModification;
+
+        return $this;
+    }
+
+    /**
+     * Get dateModification
+     *
+     * @return \DateTime
+     */
+    public function getDateModification()
+    {
+        return $this->date_modification;
     }
 }

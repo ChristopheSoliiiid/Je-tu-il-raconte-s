@@ -30,9 +30,13 @@
         <div class="alert alert-danger alert_mobile">
             <strong>Vous ne pouvez pas créer de conte depuis votre téléphone</strong>
         </div>
+
+
         <form action="" id="form_titre">
-            <label for="titre">Titre de mon conte :</label>
-            <input type="text" name="titre" id="titre">
+            {{ form_start(form) }}
+            {{ form_label(form.titre) }}
+            {{ form_widget(form.titre, {'attr': {'class': 'form-control' }}) }}
+            {{ form_end(form, {'render_rest': false}) }}
         </form>
         <div class="container-fluid">
             <div id="formulaire_choix">
