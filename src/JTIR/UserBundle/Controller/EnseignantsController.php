@@ -4,6 +4,7 @@ namespace JTIR\UserBundle\Controller;
 
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Class EnseignantsController Le contrôleur pour la partie enseignant du site.
@@ -23,6 +24,8 @@ class EnseignantsController extends Controller {
      *              -> Ville
      *              -> Établissement
      *              -> Niveau
+     *
+     * @Security("has_role('ROLE_ENSEIGNANT')")
      *
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
@@ -55,6 +58,8 @@ class EnseignantsController extends Controller {
      *          -> Publier ( --> Conte disponible dans la bibliothèque des contes + conte verrouillé a la modification )
      *          -> Imprimer ( Pourquoi pas aussi dans la bibliothèque visiteurs pour les parents ? )
      *
+     * @Security("has_role('ROLE_ENSEIGNANT')")
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function bibliothequeAction() {
@@ -73,6 +78,8 @@ class EnseignantsController extends Controller {
      *
      *      -> Action possible :
      *          -> Envoyer un mail pour la demande de partenariat aux enseignants des classes choisies ?
+     *
+     * @Security("has_role('ROLE_ENSEIGNANT')")
      *
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
@@ -100,6 +107,8 @@ class EnseignantsController extends Controller {
      *          -> Le nombre de contes par élèves
      *          -> ????
      *
+     * @Security("has_role('ROLE_ENSEIGNANT')")
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function dashboardAction() {
@@ -110,6 +119,8 @@ class EnseignantsController extends Controller {
      * Action du contrôleur pour la page des tutoriels.
      *      -> Récupérer :
      *          -> Les liens des vidéos youtube
+     *
+     * @Security("has_role('ROLE_ENSEIGNANT')")
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */

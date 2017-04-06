@@ -1,5 +1,6 @@
 <?php
 namespace JTIR\UserBundle\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**

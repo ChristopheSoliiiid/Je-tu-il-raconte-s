@@ -1,10 +1,11 @@
 {
     "name": "afpa-soliiiid/je-tu-il-raconte-s",
+    "description": "Package pour l'application Je tu il ra...conte(s)",
     "license": "proprietary",
     "type": "project",
     "autoload": {
         "psr-4": {
-            "": "src/"
+            "src/": "src/"
         },
         "classmap": [
             "app/AppKernel.php",

@@ -22,13 +22,13 @@ security:
         main:
             pattern:   ^/
             anonymous: true
-            provider: fos_userbundle
+            provider: fos_userbundle # Le "fournisseur" d'utilisateur
             form_login:
-                login_path: fos_user_security_login
-                check_path: fos_user_security_check
+                login_path: fos_user_security_login # Route vers le formulaire de connexion
+                check_path: fos_user_security_check # Route pour la soumission du formulaire
             logout:
                 path: fos_user_security_logout
-                target: /
+                target: / # Redirection après la déconnexion
             remember_me:
                 secret: %secret%
 

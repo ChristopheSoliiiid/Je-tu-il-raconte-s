@@ -83,8 +83,10 @@ fos_user:
     firewall_name: enseignant #Le nom du firewall derrière lequel on utilisera ces utilisateurs
     user_class:    JTIR\UserBundle\Entity\Enseignant
     registration:
+        form:
+            type: JTIR\UserBundle\Form\RegistrationType
         confirmation:
-           enabled: true # Activation d'un email de confirmation pour créer le compte
+            enabled: false # Activation d'un email de confirmation pour créer le compte
     from_email:
         address:     mchristophe54@gmail.com # Email qui envoie les emails de confirmation, reset password, etc...
         sender_name: Test email - Je tu il ra...conte(s)

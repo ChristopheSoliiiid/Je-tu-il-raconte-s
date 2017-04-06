@@ -17,13 +17,13 @@ class Enseignant extends BaseUser {
     protected $id;
 
     /**
-     * @ORM\OneToOne(targetEntity="JTIR\UserBundle\Entity\Adresse", inversedBy="enseignant")
+     * @ORM\OneToOne(targetEntity="JTIR\UserBundle\Entity\Adresse", inversedBy="enseignant", cascade={"persist"})
      * @ORM\JoinColumn(name="adresse_id", referencedColumnName="id", nullable=false, unique=true)
      */
     private $adresse;
 
     /**
-     * @ORM\OneToOne(targetEntity="JTIR\UserBundle\Entity\Identite")
+     * @ORM\OneToOne(targetEntity="JTIR\UserBundle\Entity\Identite", cascade={"persist"})
      * @ORM\JoinColumn(name="identite_id", referencedColumnName="id", nullable=false)
      */
     private $identite;
@@ -34,11 +34,16 @@ class Enseignant extends BaseUser {
     private $classe;
 
     /**
-     * @ORM\ManyToOne(targetEntity="JTIR\UserBundle\Entity\Civilite")
+     * @ORM\ManyToOne(targetEntity="JTIR\UserBundle\Entity\Civilite", cascade={"persist"})
      * @ORM\JoinColumn(name="civilite_id", referencedColumnName="id", nullable=false)
      */
     private $civilite;
 
+    public function __construct() {
+        parent::__construct();
+
+        $this->roles = array('ROLE_ENSEIGNANT');
+    }
 
     /**
      * Set adresse
@@ -47,7 +52,7 @@ class Enseignant extends BaseUser {
      *
      * @return Enseignant
      */
-    public function setAdresse(\JTIR\UserBundle\Entity\Adresse $adresse)
+    public function setAdresse(Adresse $adresse)
     {
         $this->adresse = $adresse;
 

@@ -1,0 +1,25 @@
+# Overwrite des routes du bundle FOSUser
+
+# Page d'inscription
+fos_user_registration_register:
+    path: /
+    defaults: { _controller: FOSUserBundle:Registration:register }
+    methods: [GET, POST]
+
+# Page pour dire à l'utilisateur de verifier son adresse email
+fos_user_registration_check_email:
+    path: /verification-email
+    defaults: { _controller: FOSUserBundle:Registration:checkEmail }
+    methods: [GET]
+
+# Validation du compte
+fos_user_registration_confirm:
+    path: /validation/{token}
+    defaults: { _controller: FOSUserBundle:Registration:confirm }
+    methods: [GET]
+
+# Page de confirmation du compte
+fos_user_registration_confirmed:
+    path: /confirmed
+    defaults: { _controller: FOSUserBundle:Registration:confirmed }
+    methods: [GET]
