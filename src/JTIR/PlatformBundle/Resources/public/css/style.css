@@ -85,7 +85,9 @@ ul.nav.navbar-nav {
     font-family: Lato, "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.navbar-custom .navbar-nav li.active a {
+.navbar-custom .navbar-nav li.active a,
+.navbar-custom .navbar-nav li.active a:hover,
+.navbar-custom .navbar-nav li.active a:focus {
     background: #234;
     color: #5bc0de;
 }
@@ -97,6 +99,20 @@ ul.nav.navbar-nav {
 
 .navbar-custom .navbar-nav li a:hover {
     color: white;
+}
+
+#burger_menu > ul > li.dropdown.active.open > ul > li > a {
+    color: darkorange;
+}
+
+#burger_menu > ul > li.dropdown.active.open > ul > li.active > a,
+#burger_menu > ul > li.dropdown.active.open > ul > li.active > a:hover {
+    color: #5bc0de;
+    background: black;
+}
+
+#burger_menu > ul > li.dropdown.active.open > ul > li > a:hover {
+    color: #234;
 }
 
 /* HEADER */
@@ -335,6 +351,7 @@ li.dropdown.open > ul > li > a:hover {
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
     color: darkorange;
+    background: #234;
 }
 
 /* MODIFICATION D'UN CONTE */
