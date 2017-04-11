@@ -245,6 +245,10 @@ footer h3 {
     color: white;
 }
 
+footer > div.footer-below > div > div > div > a > img {
+    width: 30px;
+}
+
 /* BIBLIOTHEQUE DE CONTES (VISITEURS)*/
 #formulaire_choix {
     margin-top: 50px;
@@ -645,7 +649,7 @@ li.dropdown.active.open > ul > li > a:hover {
     }
 
     header .container {
-        padding-bottom: 45px;
+        padding: 60px 0 30px 0;
     }
 
     .logo {

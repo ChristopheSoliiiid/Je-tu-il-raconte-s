@@ -33,7 +33,7 @@
                 </div>
             </div>
 
-            <form action="#">
+            <form method="POST">
 
                 <div class="row">
                     <div class="col-lg-10 col-lg-offset-1 col-sm-10 col-sm-offset-1 block-classe">
@@ -146,4 +146,27 @@
 
 {% block sitemap %}
     {{ include('JTIRUserBundle:enseignants:sitemap.html.twig') }}
+{% endblock %}
+
+{% block javascripts %}
+    <!-- Script pour ajouter une ligne a la table élève -->
+    <script>
+        $(function () {
+            $('.ajout-eleve').on('click', function () {
+                // Récupère le nombre de tr dans la table #table-eleve
+                var rowCount = $('#table-eleve tr').length;
+
+                // Les lignes html à ajouter pour rajouter une ligne à la table
+                var $trAdd = '<tr>' +
+                    '<td class="eleve nombre-eleve">' + (rowCount) + '</td>' +
+                    '<td class="eleve"><input type="text" class="form-control input-eleve"></td>' +
+                    '<td class="eleve"><input type="text" class="form-control input-eleve"></td>' +
+                    '<td class="eleve"><input type="text" class="form-control input-eleve"></td>' +
+                    '</tr>';
+
+                // Ajoute une ligne à la table
+                $('#table-eleve tr:last').after($trAdd);
+            });
+        });
+    </script>
 {% endblock %}

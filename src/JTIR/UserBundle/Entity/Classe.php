@@ -6,8 +6,7 @@ use Doctrine\ORM\Mapping as ORM;
  * @ORM\Table(name="user_classe")
  * @ORM\Entity
  */
-class Classe
-{
+class Classe {
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")

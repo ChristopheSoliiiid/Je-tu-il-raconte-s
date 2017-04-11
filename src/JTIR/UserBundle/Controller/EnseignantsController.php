@@ -103,6 +103,7 @@ class EnseignantsController extends Controller {
     /**
      * Action du contrôleur pour la page de dashboard.
      *      -> Récupérer :
+     *          -> Les infos de l'enseignant
      *          -> Le nom des élèves
      *          -> Le nombre de contes par élèves
      *          -> ????
@@ -112,7 +113,13 @@ class EnseignantsController extends Controller {
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function dashboardAction() {
-        return $this->render('JTIRUserBundle:enseignants:dashboard.html.twig');
+        $user = $this->getUser();
+        // Raccourci pour $this->get('security.context')->getToken()->getUser()
+        // Permet de récupérer l'utilisateur actuellement connecté
+
+        return $this->render('JTIRUserBundle:enseignants:dashboard.html.twig',
+            array('user' => $user));
+        // On passe l'utilisateur dans la vue twig
     }
 
     /**
