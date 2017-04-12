@@ -20,11 +20,6 @@ class Classe {
     private $niveau;
 
     /**
-     * @ORM\OneToMany(targetEntity="JTIR\UserBundle\Entity\Classe", mappedBy="EI_classe")
-     */
-    private $EP_classe;
-
-    /**
      * @ORM\OneToMany(targetEntity="JTIR\UserBundle\Entity\Eleve", mappedBy="classe")
      */
     private $eleve;
@@ -34,6 +29,17 @@ class Classe {
      * @ORM\JoinColumn(name="enseignant_id", referencedColumnName="id", nullable=false)
      */
     private $enseignant;
+
+    /**
+     * @ORM\OneToOne(targetEntity="JTIR\UserBundle\Entity\Adresse", cascade={"persist"})
+     * @ORM\JoinColumn(name="adresse_id", referencedColumnName="id", nullable=false, unique=true)
+     */
+    private $adresse;
+
+    /**
+     * @ORM\OneToMany(targetEntity="JTIR\UserBundle\Entity\Classe", mappedBy="EI_classe")
+     */
+    private $EP_classe;
 
     /**
      * @ORM\ManyToOne(targetEntity="JTIR\UserBundle\Entity\Classe", inversedBy="EP_classe")
@@ -197,5 +203,29 @@ class Classe {
     public function getEIClasse()
     {
         return $this->EI_classe;
+    }
+
+    /**
+     * Set adresse
+     *
+     * @param \JTIR\UserBundle\Entity\Adresse $adresse
+     *
+     * @return Classe
+     */
+    public function setAdresse(\JTIR\UserBundle\Entity\Adresse $adresse)
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    /**
+     * Get adresse
+     *
+     * @return \JTIR\UserBundle\Entity\Adresse
+     */
+    public function getAdresse()
+    {
+        return $this->adresse;
     }
 }

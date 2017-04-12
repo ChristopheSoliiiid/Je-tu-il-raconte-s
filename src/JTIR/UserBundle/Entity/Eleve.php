@@ -34,9 +34,11 @@ class Eleve
     private $classe;
 
     /**
-     * @ORM\ManyToMany(targetEntity="JTIR\CadavreExquisBundle\Entity\CadavreExquis", mappedBy="eleve")
+     * A décommenter pour lors de l'utilisation du CadavreExquisBundle
+     * ///////////// @ORM\ManyToMany(targetEntity="JTIR\CadavreExquisBundle\Entity\CadavreExquis", mappedBy="eleve")
      */
-    private $cadavreExquis;
+    //private $cadavreExquis;
+
     /**
      * Constructor
      */
@@ -136,39 +138,5 @@ class Eleve
     public function getClasse()
     {
         return $this->classe;
-    }
-
-    /**
-     * Add cadavreExqui
-     *
-     * @param \JTIR\CadavreExquisBundle\Entity\CadavreExquis $cadavreExqui
-     *
-     * @return Eleve
-     */
-    public function addCadavreExqui(\JTIR\CadavreExquisBundle\Entity\CadavreExquis $cadavreExqui)
-    {
-        $this->cadavreExquis[] = $cadavreExqui;
-
-        return $this;
-    }
-
-    /**
-     * Remove cadavreExqui
-     *
-     * @param \JTIR\CadavreExquisBundle\Entity\CadavreExquis $cadavreExqui
-     */
-    public function removeCadavreExqui(\JTIR\CadavreExquisBundle\Entity\CadavreExquis $cadavreExqui)
-    {
-        $this->cadavreExquis->removeElement($cadavreExqui);
-    }
-
-    /**
-     * Get cadavreExquis
-     *
-     * @return \Doctrine\Common\Collections\Collection
-     */
-    public function getCadavreExquis()
-    {
-        return $this->cadavreExquis;
     }
 }

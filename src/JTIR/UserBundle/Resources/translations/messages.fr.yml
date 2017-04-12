@@ -69,6 +69,7 @@ layout:
     login: Connexion
     register: Inscription
     logged_in_as: 'Connecté en tant que %username%'
+
 form:
     group_name: 'Nom du groupe'
     username: 'Nom d''utilisateur'
@@ -78,9 +79,13 @@ form:
     password_confirmation: 'f4ze56f4z6ee'
     new_password: 'Nouveau mot de passe'
     new_password_confirmation: 'Répéter le nouveau mot de passe'
-    civilite: Civilité
-    nom: Nom
-    prenom: Prénom
-    departement: Département
-    ville: Ville
-    etablissement: Établissement
+    classe:
+        submit: 'Créer ma classe'
+
+Civilite: Civilité
+Nom: Nom
+Prenom: Prénom
+Departement: Département
+Ville: Ville
+Etablissement: Établissement
+Niveau: Niveau

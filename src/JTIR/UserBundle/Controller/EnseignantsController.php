@@ -2,6 +2,8 @@
 
 namespace JTIR\UserBundle\Controller;
 
+use JTIR\UserBundle\Entity\Classe;
+use JTIR\UserBundle\Form\ClasseType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -32,19 +34,28 @@ class EnseignantsController extends Controller {
      */
     public function classeAction(Request $request) {
 
-        /* // création d'une nouvelle classe
-        // création du "formulaire" ?
+        $classe = new Classe();
+        $enseignant = $this->getUser(); // On récupère l'enseignant connecté
+
+        // Construction du formulaire
+        $form = $this->get('form.factory')->create(ClasseType::class, $classe);
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
 
-            // gestion des données
+            $classe->setEnseignant($enseignant); // Assignation de l'enseignant à la classe
+
+            $em = $this->getDoctrine()->getManager(); // L'entityManager
+            $em->persist($classe); // Sauvegarde des modifications sur l'entity
+            $em->flush(); // Sauvegarde en bdd
 
             // Ajout d'un message de confirmation de l'ajout de la classe et des élèves dans la bdd.
             $request->getSession()->getFlashBag()
                 ->add('classe_ok', 'Votre classe et les comptes de vos élèves ont bien enregistré.');
-        } */
+        }
 
-        return $this->render('JTIRUserBundle:enseignants:classe.html.twig');
+        return $this->render('JTIRUserBundle:enseignants:classe.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 
     /**

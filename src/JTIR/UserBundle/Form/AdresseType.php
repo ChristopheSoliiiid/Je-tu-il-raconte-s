@@ -17,13 +17,13 @@ class AdresseType extends AbstractType {
         $builder
             ->add('departement', ChoiceType::class, array(
                 'choices' => array(
-                    '54 - Meurthe-et-Moselle' => '54',
-                    '55 - Meuse' => '55',
-                    '57 - Moselle' => '57',
-                    '88 - Vosges' => '88'
+                    '54 - Meurthe-et-Moselle' => 'Meurthe-et-Moselle',
+                    '55 - Meuse' => 'Meuse',
+                    '57 - Moselle' => 'Moselle',
+                    '88 - Vosges' => 'Vosges'
                 ),
-                'group_by' => function($val, $key, $index) {
-                    if ($val == '54' || $val == '55' || $val == '57' || $val == '88') {
+                'group_by' => function($val) {
+                    if ($val == 'Meurthe-et-Moselle' || $val == 'Meuse' || $val == 'Moselle' || $val == 'Vosges') {
                         return 'Lorraine';
                     } else {
                         return 'Autres';
@@ -40,9 +40,9 @@ class AdresseType extends AbstractType {
             ))
             ->add('etablissement', ChoiceType::class, array(
                 'choices' => array(
-                    'Ecole Albert Schweitzer' => 'EAS',
-                    'Ecole Pierre Dohm' => 'EPA',
-                    'Ecole Jules Ferry' => 'EJF'
+                    'Ecole Albert Schweitzer' => 'Ecole Albert Schweitzer',
+                    'Ecole Pierre Dohm' => 'Ecole Pierre Dohm',
+                    'Ecole Jules Ferry' => 'Ecole Jules Ferry'
                 )
             ));
     }
