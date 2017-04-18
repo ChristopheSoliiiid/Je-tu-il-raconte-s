@@ -50,7 +50,7 @@ class EnseignantsController extends Controller {
 
             // Ajout d'un message de confirmation de l'ajout de la classe et des élèves dans la bdd.
             $request->getSession()->getFlashBag()
-                ->add('classe_ok', 'Votre classe et les comptes de vos élèves ont bien enregistré.');
+                ->add('classe_ok', 'Votre classe à bien été enregistrée.');
         }
 
         return $this->render('JTIRUserBundle:enseignants:classe.html.twig', array(

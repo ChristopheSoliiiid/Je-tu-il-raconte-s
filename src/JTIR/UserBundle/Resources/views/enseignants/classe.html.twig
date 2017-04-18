@@ -40,6 +40,14 @@
                         <img src="{{ asset('img/child.png') }}" alt="Un enfant" id="enfant">
                         <img src="{{ asset('img/lady.png') }}" alt="Une demoiselle" id="demoiselle">
 
+                        {% if app.session.flashbag.has('classe_ok') %}
+                            <div class="alert alert-success">
+                                {% for msg in app.session.flashBag.get('classe_ok') %}
+                                    {{ msg }}
+                                {% endfor %}
+                            </div>
+                        {% endif %}
+
                         {{ form_start(form, {'method': 'post', 'action': path('jtir_enseignants_inscrire_classe') }) }}
 
                         {# Les erreurs générales du formulaires. #}
