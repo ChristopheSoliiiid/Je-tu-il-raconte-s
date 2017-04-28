@@ -5,7 +5,7 @@
     "type": "project",
     "autoload": {
         "psr-4": {
-            "src/": "src/"
+            "": "src/"
         },
         "classmap": [
             "app/AppKernel.php",
@@ -34,7 +34,8 @@
         "twig/twig": "^2.0",
         "leafo/scssphp": "~0.6",
         "patchwork/jsqueeze": "~1.0",
-        "friendsofsymfony/user-bundle": "dev-master"
+        "friendsofsymfony/user-bundle": "dev-master",
+        "pugx/multi-user-bundle": "^2.0"
     },
     "require-dev": {
         "sensio/generator-bundle": "^3.0",

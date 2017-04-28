@@ -2,19 +2,15 @@
 namespace JTIR\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use PUGX\MultiUserBundle\Validator\Constraints\UniqueEntity;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
- * @ORM\Table(name="user_eleve")
  * @ORM\Entity
+ * @ORM\Table(name="user_eleve")
+ * @UniqueEntity(fields = "username", targetClass = "JTIR\UserBundle\Entity\User", message = "fos_user.username.already_used")
  */
-class Eleve
-{
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    private $id;
+class Eleve extends User {
 
     /**
      * @ORM\OneToOne(targetEntity="JTIR\UserBundle\Entity\Identite")
@@ -28,24 +24,26 @@ class Eleve
     private $conte;
 
     /**
-     * @ORM\ManyToOne(targetEntity="JTIR\UserBundle\Entity\Classe", inversedBy="eleve")
+     * @ORM\ManyToOne(targetEntity="JTIR\UserBundle\Entity\Classe", inversedBy="eleves", cascade={"persist"})
      * @ORM\JoinColumn(name="classe_id", referencedColumnName="id", nullable=false)
      */
     private $classe;
 
     /**
      * A décommenter pour lors de l'utilisation du CadavreExquisBundle
-     * ///////////// @ORM\ManyToMany(targetEntity="JTIR\CadavreExquisBundle\Entity\CadavreExquis", mappedBy="eleve")
+     * ORM\ManyToMany(targetEntity="JTIR\CadavreExquisBundle\Entity\CadavreExquis", mappedBy="eleve")
      */
     //private $cadavreExquis;
 
     /**
      * Constructor
      */
-    public function __construct()
-    {
-        $this->conte = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->cadavreExquis = new \Doctrine\Common\Collections\ArrayCollection();
+    public function __construct() {
+        parent::__construct();
+
+        $this->conte = new ArrayCollection();
+        //$this->cadavreExquis = new ArrayCollection();
+        $this->roles = array('ROLE_ELEVE');
     }
 
     /**
@@ -65,7 +63,7 @@ class Eleve
      *
      * @return Eleve
      */
-    public function setIdentite(\JTIR\UserBundle\Entity\Identite $identite)
+    public function setIdentite(Identite $identite)
     {
         $this->identite = $identite;
 
@@ -86,10 +84,8 @@ class Eleve
      * Add conte
      *
      * @param \JTIR\PlatformBundle\Entity\Conte $conte
-     *
-     * @return Eleve
      */
-    public function addConte(\JTIR\PlatformBundle\Entity\Conte $conte)
+    public function addConte(Conte $conte)
     {
         $this->conte[] = $conte;
 
@@ -101,7 +97,7 @@ class Eleve
      *
      * @param \JTIR\PlatformBundle\Entity\Conte $conte
      */
-    public function removeConte(\JTIR\PlatformBundle\Entity\Conte $conte)
+    public function removeConte(Conte $conte)
     {
         $this->conte->removeElement($conte);
     }
@@ -123,7 +119,7 @@ class Eleve
      *
      * @return Eleve
      */
-    public function setClasse(\JTIR\UserBundle\Entity\Classe $classe)
+    public function setClasse(Classe $classe)
     {
         $this->classe = $classe;
 
@@ -138,5 +134,11 @@ class Eleve
     public function getClasse()
     {
         return $this->classe;
+    }
+
+    public function setUsername($username)
+    {
+        parent::setUsername($username);
+        $this->setEmail($username . "@eleve.jetuil.fr");
     }
 }
