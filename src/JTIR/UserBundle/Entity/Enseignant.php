@@ -2,28 +2,24 @@
 namespace JTIR\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
-use FOS\UserBundle\Model\User as BaseUser;
+use PUGX\MultiUserBundle\Validator\Constraints\UniqueEntity;
 
 /**
- * @ORM\Table(name="user_enseignant")
  * @ORM\Entity
+ * @ORM\Table(name="user_enseignant")
+ * @UniqueEntity(fields = "username", targetClass = "JTIR\UserBundle\Entity\User", message = "fos_user.username.already_used")
+ * @UniqueEntity(fields = "email", targetClass = "JTIR\UserBundle\Entity\User", message = "fos_user.email.already_used")
  */
-class Enseignant extends BaseUser {
-    /**
-     * @ORM\Id
-     * @ORM\Column(type="integer")
-     * @ORM\GeneratedValue(strategy="AUTO")
-     */
-    protected $id;
+class Enseignant extends User {
 
     /**
-     * @ORM\OneToOne(targetEntity="JTIR\UserBundle\Entity\Adresse", inversedBy="enseignant")
+     * @ORM\OneToOne(targetEntity="JTIR\UserBundle\Entity\Adresse", inversedBy="enseignant", cascade={"persist"})
      * @ORM\JoinColumn(name="adresse_id", referencedColumnName="id", nullable=false, unique=true)
      */
     private $adresse;
 
     /**
-     * @ORM\OneToOne(targetEntity="JTIR\UserBundle\Entity\Identite")
+     * @ORM\OneToOne(targetEntity="JTIR\UserBundle\Entity\Identite", cascade={"persist"})
      * @ORM\JoinColumn(name="identite_id", referencedColumnName="id", nullable=false)
      */
     private $identite;
@@ -34,11 +30,16 @@ class Enseignant extends BaseUser {
     private $classe;
 
     /**
-     * @ORM\ManyToOne(targetEntity="JTIR\UserBundle\Entity\Civilite")
+     * @ORM\ManyToOne(targetEntity="JTIR\UserBundle\Entity\Civilite", cascade={"persist"})
      * @ORM\JoinColumn(name="civilite_id", referencedColumnName="id", nullable=false)
      */
     private $civilite;
 
+    public function __construct() {
+        parent::__construct();
+
+        $this->roles = array('ROLE_ENSEIGNANT');
+    }
 
     /**
      * Set adresse
@@ -47,7 +48,7 @@ class Enseignant extends BaseUser {
      *
      * @return Enseignant
      */
-    public function setAdresse(\JTIR\UserBundle\Entity\Adresse $adresse)
+    public function setAdresse(Adresse $adresse)
     {
         $this->adresse = $adresse;
 
@@ -95,7 +96,7 @@ class Enseignant extends BaseUser {
      *
      * @return Enseignant
      */
-    public function addClasse(\JTIR\UserBundle\Entity\Classe $classe)
+    public function addClasse(Classe $classe)
     {
         $this->classe[] = $classe;
 
@@ -107,7 +108,7 @@ class Enseignant extends BaseUser {
      *
      * @param \JTIR\UserBundle\Entity\Classe $classe
      */
-    public function removeClasse(\JTIR\UserBundle\Entity\Classe $classe)
+    public function removeClasse(Classe $classe)
     {
         $this->classe->removeElement($classe);
     }
@@ -129,7 +130,7 @@ class Enseignant extends BaseUser {
      *
      * @return Enseignant
      */
-    public function setCivilite(\JTIR\UserBundle\Entity\Civilite $civilite)
+    public function setCivilite(Civilite $civilite)
     {
         $this->civilite = $civilite;
 

@@ -1,4 +1,5 @@
 services:
-#    jtir_user.example:
-#        class: JTIR\UserBundle\Example
-#        arguments: ["@service_id", "plain_value", "%parameter%"]
+    jtir_userbundle.detecterroles: # Le nom du service
+        class: JTIR\UserBundle\Utils\DetecterRoles # La classe du service
+        arguments: ['@security.authorization_checker', '@router']
+        # Les deux services de Symfony que notre service va avoir besoin

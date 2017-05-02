@@ -1,0 +1,40 @@
+{# On utilise ici le layout général #}
+{% extends "JTIRPlatformBundle::layout.html.twig" %}
+
+{% block title %}
+    Confirmation du compte - {{ parent() }}
+    {# parent() affiche le reste du block title. On ne fait que rajouter "Inscription - " au titre de la page #}
+{% endblock %}
+
+{% block menu %}
+    <li><a href="{{ path('jtir_platform_index') }}">Accueil</a></li>
+    <li><a href="{{ path('fos_user_security_login') }}">Connexion</a></li>
+    <li><a href="{{ path('jtir_platform_bibliotheque_visiteur') }}">Bibliothèque de contes</a></li>
+{% endblock %}
+
+{% block body %}
+
+    <!-- INSCRIPTION -->
+    <section id="connexion">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12 formConnexion">
+
+                    <div class="col-lg-12">
+                        <h2>Confirmation de votre inscription</h2>
+                        <hr>
+                    </div>
+
+                    {% trans_default_domain 'FOSUserBundle' %}
+
+                    {% block fos_user_content %}
+                        <div>{{ 'registration.check_email'|trans({'%email%': user.email}) }}</div>
+                    {% endblock fos_user_content %}
+
+                </div>
+            </div> <!-- /.row -->
+        </div> <!-- /.container -->
+    </section> <!-- /.section -->
+    <!-- /INSCRIPTION -->
+
+{% endblock %}

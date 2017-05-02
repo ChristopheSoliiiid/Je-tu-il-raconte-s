@@ -85,15 +85,11 @@ ul.nav.navbar-nav {
     font-family: Lato, "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
-.navbar-custom .navbar-nav li.active a {
-    background: #234;
-    color: darkorange;
-}
-
+.navbar-custom .navbar-nav li.active a,
 .navbar-custom .navbar-nav li.active a:hover,
 .navbar-custom .navbar-nav li.active a:focus {
     background: #234;
-    color: white;
+    color: #5bc0de;
 }
 
 .navbar-custom .navbar-nav li a,
@@ -103,6 +99,20 @@ ul.nav.navbar-nav {
 
 .navbar-custom .navbar-nav li a:hover {
     color: white;
+}
+
+#burger_menu > ul > li.dropdown.active.open > ul > li > a {
+    color: darkorange;
+}
+
+#burger_menu > ul > li.dropdown.active.open > ul > li.active > a,
+#burger_menu > ul > li.dropdown.active.open > ul > li.active > a:hover {
+    color: #5bc0de;
+    background: black;
+}
+
+#burger_menu > ul > li.dropdown.active.open > ul > li > a:hover {
+    color: #234;
 }
 
 /* HEADER */
@@ -117,8 +127,8 @@ header {
 }
 
 header .container {
-    padding-top: 70px;
-    padding-bottom: 100px;
+    padding-top: 35px;
+    padding-bottom: 35px;
 }
 
 .name {
@@ -134,7 +144,7 @@ header .container {
 
 /* INTRODUCTION */
 #introduction {
-    padding: 100px 0;
+    padding: 50px 0;
 }
 
 #introduction .row {
@@ -159,6 +169,7 @@ section h2 {
 p.intro {
     font-size: 20px;
     font-family: Lato, "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-align: justify;
 }
 
 /* BOUTONS */
@@ -216,6 +227,12 @@ footer h3 {
     padding: 0;
 }
 
+.apropos {
+    color: #18BC9C;
+    font-size: 0.8em;
+    text-align: justify;
+}
+
 .footer-green {
     color: #18BC9C;
 }
@@ -228,6 +245,10 @@ footer h3 {
     padding: 15px 0;
     background-color: #233140;
     color: white;
+}
+
+footer > div.footer-below > div > div > div > a > img {
+    width: 30px;
 }
 
 /* BIBLIOTHEQUE DE CONTES (VISITEURS)*/
@@ -336,6 +357,7 @@ li.dropdown.open > ul > li > a:hover {
 .navbar-default .navbar-nav > .open > a:hover,
 .navbar-default .navbar-nav > .open > a:focus {
     color: darkorange;
+    background: #234;
 }
 
 /* MODIFICATION D'UN CONTE */
@@ -563,6 +585,14 @@ li.dropdown.active.open > ul > li > a:hover {
     border-radius: 0 !important;
 }
 
+.remove-eleve-icon {
+    width: 25px;
+}
+
+.td-remove-eleve {
+    padding: 4px !important;
+}
+
 .nombre-eleve {
     width: 50px;
     font-weight: bold;
@@ -629,7 +659,7 @@ li.dropdown.active.open > ul > li > a:hover {
     }
 
     header .container {
-        padding-bottom: 45px;
+        padding: 60px 0 30px 0;
     }
 
     .logo {

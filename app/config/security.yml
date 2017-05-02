@@ -2,7 +2,7 @@
 # http://symfony.com/doc/current/security.html
 security:
     encoders:
-        JTIR\UserBundle\Entity\Enseignant: sha512 #Hashage du mot de passe avec sha512
+        JTIR\UserBundle\Entity\User: sha512 #Hashage du mot de passe avec sha512
 
     role_hierarchy:
         ROLE_ELEVE: ROLE_ELEVE
@@ -22,17 +22,17 @@ security:
         main:
             pattern:   ^/
             anonymous: true
-            provider: fos_userbundle
+            provider: fos_userbundle # Le "fournisseur" d'utilisateur
             form_login:
-                login_path: fos_user_security_login
-                check_path: fos_user_security_check
+                login_path: fos_user_security_login # Route vers le formulaire de connexion
+                check_path: fos_user_security_check # Route pour la soumission du formulaire
             logout:
                 path: fos_user_security_logout
-                target: /
+                target: / # Redirection après la déconnexion
             remember_me:
                 secret: %secret%
 
     # Le contrôle d'accès va s'occuper de déterminer si le visiteur a les bons droits (rôles) pour accéder à la ressource demandée.
     access_control:
-        #- { path: ^/eleve, roles: ROLE_ELEVE }
+        - { path: ^/eleve, roles: ROLE_ELEVE }
         - { path: ^/enseignant, roles: ROLE_ENSEIGNANT }

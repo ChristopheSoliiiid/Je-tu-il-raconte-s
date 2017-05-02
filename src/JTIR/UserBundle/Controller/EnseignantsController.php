@@ -2,14 +2,28 @@
 
 namespace JTIR\UserBundle\Controller;
 
+use JTIR\UserBundle\Entity\Classe;
+use JTIR\UserBundle\Form\ClasseType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
+use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 
 /**
  * Class EnseignantsController Le contrôleur pour la partie enseignant du site.
  * @package JTIR\PlatformBundle\Controller
  */
 class EnseignantsController extends Controller {
+
+    /**
+     * Action pour l'enregistrement d'un enseignant. (PUGXMultiUserBundle)
+     *
+     * @return mixed
+     */
+    public function registerAction() {
+        return $this->container
+                    ->get('pugx_multi_user.registration_manager')
+                    ->register('JTIR\UserBundle\Entity\Enseignant');
+    }
 
     /**
      * Action du contrôleur pour la page de création d'une classe.
@@ -24,24 +38,37 @@ class EnseignantsController extends Controller {
      *              -> Établissement
      *              -> Niveau
      *
+     * @Security("has_role('ROLE_ENSEIGNANT')")
+     *
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function classeAction(Request $request) {
 
-        /* // création d'une nouvelle classe
-        // création du "formulaire" ?
+        $classe = new Classe();
+        $enseignant = $this->getUser(); // On récupère l'enseignant connecté
+
+        // Construction du formulaire
+        $form = $this->get('form.factory')->create(ClasseType::class, $classe);
 
         if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
 
-            // gestion des données
+            $classe->setEnseignant($enseignant); // Assignation de l'enseignant à la classe
+
+            $em = $this->getDoctrine()->getManager(); // L'entityManager
+            $em->persist($classe); // Sauvegarde des modifications sur l'entity
+            $em->flush(); // Sauvegarde en bdd
 
             // Ajout d'un message de confirmation de l'ajout de la classe et des élèves dans la bdd.
             $request->getSession()->getFlashBag()
-                ->add('classe_ok', 'Votre classe et les comptes de vos élèves ont bien enregistré.');
-        } */
+                ->add('classe_ok', 'Votre classe et les comptes de vos élèves ont bien été crée.');
 
-        return $this->render('JTIRUserBundle:enseignants:classe.html.twig');
+            return $this->redirectToRoute('jtir_enseignants_inscrire_classe');
+        }
+
+        return $this->render('JTIRUserBundle:enseignants:classe.html.twig', array(
+            'form' => $form->createView(),
+        ));
     }
 
     /**
@@ -54,6 +81,8 @@ class EnseignantsController extends Controller {
      *          -> Annoter / Corriger ( --> modification du contenu du conte ? )
      *          -> Publier ( --> Conte disponible dans la bibliothèque des contes + conte verrouillé a la modification )
      *          -> Imprimer ( Pourquoi pas aussi dans la bibliothèque visiteurs pour les parents ? )
+     *
+     * @Security("has_role('ROLE_ENSEIGNANT')")
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */
@@ -73,6 +102,8 @@ class EnseignantsController extends Controller {
      *
      *      -> Action possible :
      *          -> Envoyer un mail pour la demande de partenariat aux enseignants des classes choisies ?
+     *
+     * @Security("has_role('ROLE_ENSEIGNANT')")
      *
      * @param Request $request
      * @return \Symfony\Component\HttpFoundation\Response
@@ -96,20 +127,31 @@ class EnseignantsController extends Controller {
     /**
      * Action du contrôleur pour la page de dashboard.
      *      -> Récupérer :
+     *          -> Les infos de l'enseignant
      *          -> Le nom des élèves
      *          -> Le nombre de contes par élèves
      *          -> ????
      *
+     * @Security("has_role('ROLE_ENSEIGNANT')")
+     *
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function dashboardAction() {
-        return $this->render('JTIRUserBundle:enseignants:dashboard.html.twig');
+        $user = $this->getUser();
+        // Raccourci pour $this->get('security.context')->getToken()->getUser()
+        // Permet de récupérer l'utilisateur actuellement connecté
+
+        return $this->render('JTIRUserBundle:enseignants:dashboard.html.twig',
+            array('user' => $user));
+        // On passe l'utilisateur dans la vue twig
     }
 
     /**
      * Action du contrôleur pour la page des tutoriels.
      *      -> Récupérer :
      *          -> Les liens des vidéos youtube
+     *
+     * @Security("has_role('ROLE_ENSEIGNANT')")
      *
      * @return \Symfony\Component\HttpFoundation\Response
      */

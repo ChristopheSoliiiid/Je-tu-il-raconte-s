@@ -12,6 +12,17 @@ use Symfony\Component\HttpFoundation\Request;
 class ElevesController extends Controller {
 
     /**
+     * Action pour enregistrer un élève. (PUGXMultiUserBundle)
+     *
+     * @return mixed
+     */
+    public function registerAction() {
+        return $this->container
+            ->get('pugx_multi_user.registration_manager')
+            ->register('JTIR\UserBundle\Entity\Eleve');
+    }
+
+    /**
      * Action du contrôleur pour la page de création d'un conte.
      *      -> Créer :
      *          -> Le conte

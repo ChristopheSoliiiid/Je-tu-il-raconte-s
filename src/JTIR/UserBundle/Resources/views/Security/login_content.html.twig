@@ -8,7 +8,7 @@
 
 {% block menu %}
     <li><a href="{{ path('jtir_platform_index') }}">Accueil</a></li>
-    <li class="active"><a href="">Connexion</a></li>
+    <li class="active"><a href="{{ path('fos_user_security_login') }}">Connexion</a></li>
     <li><a href="{{ path('jtir_platform_bibliotheque_visiteur') }}">Bibliothèque de contes</a></li>
 {% endblock %}
 
@@ -24,6 +24,14 @@
 
                     <h2>Connexion</h2>
                     <hr>
+
+                    {% if app.session.flashbag.has('confirmed') %}
+                    <div class="alert alert-success">
+                        {% for msg in app.session.flashBag.get('confirmed') %}
+                            {{ msg }}
+                        {% endfor %}
+                    </div>
+                    {% endif %}
 
                     {% trans_default_domain 'FOSUserBundle' %}
 
@@ -66,11 +74,10 @@
                     <h2>Inscription</h2>
                     <hr>
 
-                    <p class="intro">Lorem ipsum dolor sit amet, consectetur adipisicing elit. Nam provident, porro hic
-                        obcaecati pariatur, nihil esse recusandae. Lorem ipsum dolor sit amet, consectetur adipisicing
-                        elit.</p>
+                    <p class="intro">Vous êtes enseignant, vous avez une classe de GS, CP ou CE1 et vous souhaitez utiliser notre application
+                        pour aider vos élèves, vous pouvez vous inscrire en cliquant sur le bouton ci-dessous.</p>
 
-                    <a href="{{ path('jtir_platform_inscription') }}">
+                    <a href="{{ path('pugx_enseignant_registration') }}">
                         <button class="btn btn-def btn-form center-block">
                             Créer mon compte
                         </button>

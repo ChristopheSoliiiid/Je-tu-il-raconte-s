@@ -1,13 +1,14 @@
 <?php
 namespace JTIR\UserBundle\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Table(name="user_classe")
  * @ORM\Entity
  */
-class Classe
-{
+class Classe {
     /**
      * @ORM\Id
      * @ORM\Column(type="integer")
@@ -21,14 +22,9 @@ class Classe
     private $niveau;
 
     /**
-     * @ORM\OneToMany(targetEntity="JTIR\UserBundle\Entity\Classe", mappedBy="EI_classe")
+     * @ORM\OneToMany(targetEntity="JTIR\UserBundle\Entity\Eleve", mappedBy="classe", cascade={"persist"})
      */
-    private $EP_classe;
-
-    /**
-     * @ORM\OneToMany(targetEntity="JTIR\UserBundle\Entity\Eleve", mappedBy="classe")
-     */
-    private $eleve;
+    private $eleves;
 
     /**
      * @ORM\ManyToOne(targetEntity="JTIR\UserBundle\Entity\Enseignant", inversedBy="classe")
@@ -37,6 +33,19 @@ class Classe
     private $enseignant;
 
     /**
+     * @ORM\OneToOne(targetEntity="JTIR\UserBundle\Entity\Adresse", cascade={"persist"})
+     * @ORM\JoinColumn(name="adresse_id", referencedColumnName="id", nullable=false, unique=true)
+     */
+    private $adresse;
+
+    /**
+     * EP = Entité Proprietaire
+     * @ORM\OneToMany(targetEntity="JTIR\UserBundle\Entity\Classe", mappedBy="EI_classe")
+     */
+    private $EP_classe;
+
+    /**
+     * EI = Entité Inverse
      * @ORM\ManyToOne(targetEntity="JTIR\UserBundle\Entity\Classe", inversedBy="EP_classe")
      * @ORM\JoinColumn(name="classe_id", referencedColumnName="id")
      */
@@ -46,8 +55,8 @@ class Classe
      */
     public function __construct()
     {
-        $this->EP_classe = new \Doctrine\Common\Collections\ArrayCollection();
-        $this->eleve = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->EP_classe = new ArrayCollection();
+        $this->eleves = new ArrayCollection();
     }
 
     /**
@@ -91,7 +100,7 @@ class Classe
      *
      * @return Classe
      */
-    public function addEPClasse(\JTIR\UserBundle\Entity\Classe $ePClasse)
+    public function addEPClasse(Classe $ePClasse)
     {
         $this->EP_classe[] = $ePClasse;
 
@@ -103,7 +112,7 @@ class Classe
      *
      * @param \JTIR\UserBundle\Entity\Classe $ePClasse
      */
-    public function removeEPClasse(\JTIR\UserBundle\Entity\Classe $ePClasse)
+    public function removeEPClasse(Classe $ePClasse)
     {
         $this->EP_classe->removeElement($ePClasse);
     }
@@ -119,17 +128,14 @@ class Classe
     }
 
     /**
-     * Add eleve
+     * Set la classe de l'Eleve et ajoute un Eleve dans la collection
      *
      * @param \JTIR\UserBundle\Entity\Eleve $eleve
-     *
-     * @return Classe
      */
-    public function addEleve(\JTIR\UserBundle\Entity\Eleve $eleve)
+    public function addEleve(Eleve $eleve)
     {
-        $this->eleve[] = $eleve;
-
-        return $this;
+        $eleve->setClasse($this);
+        $this->eleves->add($eleve);
     }
 
     /**
@@ -137,19 +143,19 @@ class Classe
      *
      * @param \JTIR\UserBundle\Entity\Eleve $eleve
      */
-    public function removeEleve(\JTIR\UserBundle\Entity\Eleve $eleve)
+    public function removeEleve(Eleve $eleve)
     {
-        $this->eleve->removeElement($eleve);
+        $this->eleves->removeElement($eleve);
     }
 
     /**
-     * Get eleve
+     * Get eleves
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getEleve()
+    public function getEleves()
     {
-        return $this->eleve;
+        return $this->eleves;
     }
 
     /**
@@ -159,7 +165,7 @@ class Classe
      *
      * @return Classe
      */
-    public function setEnseignant(\JTIR\UserBundle\Entity\Enseignant $enseignant)
+    public function setEnseignant(Enseignant $enseignant)
     {
         $this->enseignant = $enseignant;
 
@@ -183,7 +189,7 @@ class Classe
      *
      * @return Classe
      */
-    public function setEIClasse(\JTIR\UserBundle\Entity\Classe $eIClasse = null)
+    public function setEIClasse(Classe $eIClasse = null)
     {
         $this->EI_classe = $eIClasse;
 
@@ -198,5 +204,29 @@ class Classe
     public function getEIClasse()
     {
         return $this->EI_classe;
+    }
+
+    /**
+     * Set adresse
+     *
+     * @param \JTIR\UserBundle\Entity\Adresse $adresse
+     *
+     * @return Classe
+     */
+    public function setAdresse(Adresse $adresse)
+    {
+        $this->adresse = $adresse;
+
+        return $this;
+    }
+
+    /**
+     * Get adresse
+     *
+     * @return \JTIR\UserBundle\Entity\Adresse
+     */
+    public function getAdresse()
+    {
+        return $this->adresse;
     }
 }

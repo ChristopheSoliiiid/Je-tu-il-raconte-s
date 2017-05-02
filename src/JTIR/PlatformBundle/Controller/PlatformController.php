@@ -17,26 +17,16 @@ class PlatformController extends Controller
      */
     public function indexAction()
     {
+        // Récupération du service detecter role
+        $detectRole = $this->container->get('jtir_userbundle.detecterroles');
+
+        // Verification des roles, si l'utilisateur à un role assigné, redirection vers la page d'interface
+        if($detectRole->verifierRole() != null) {
+            return $detectRole->verifierRole();
+        }
+
         // Retourne simplement la vue de la page d'accueil
         return $this->render("JTIRPlatformBundle:visiteurs:index.html.twig");
-    }
-
-    /**
-     * Action du contrôleur pour la page de connexion de la plateforme.
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    /*public function connexionAction()
-    {
-        return $this->render('JTIRPlatformBundle:visiteurs:connexion.html.twig');
-    }*/
-
-    /**
-     * Action du contrôleur pour la page d'inscription.
-     * @return \Symfony\Component\HttpFoundation\Response
-     */
-    public function inscriptionAction()
-    {
-        return $this->render('JTIRPlatformBundle:visiteurs:inscription.html.twig');
     }
 
     /**
@@ -45,6 +35,14 @@ class PlatformController extends Controller
      */
     public function bibliothequeAction()
     {
+        // Récupération du service detecter role
+        $detectRole = $this->container->get('jtir_userbundle.detecterroles');
+
+        // Verification des roles, si l'utilisateur à un role assigné, redirection vers la page d'interface
+        if($detectRole->verifierRole() != null) {
+            return $detectRole->verifierRole();
+        }
+
         return $this->render('JTIRPlatformBundle:visiteurs:bibliotheque.html.twig');
     }
 }

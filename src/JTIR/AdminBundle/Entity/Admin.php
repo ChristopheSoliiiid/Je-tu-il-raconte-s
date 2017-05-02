@@ -21,7 +21,7 @@ class Admin
     private $identite;
 
     /**
-     * @ORM\ManyToOne(targetEntity="JTIR\UserBundle\Entity\Civilite", inversedBy="admin")
+     * @ORM\ManyToOne(targetEntity="JTIR\UserBundle\Entity\Civilite", cascade={"persist"})
      * @ORM\JoinColumn(name="civilite_id", referencedColumnName="id", nullable=false)
      */
     private $civilite;

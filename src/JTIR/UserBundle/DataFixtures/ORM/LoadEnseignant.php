@@ -21,7 +21,7 @@ class LoadEnseignant extends AbstractFixture implements OrderedFixtureInterface,
 
     public function load(ObjectManager $manager) {
 
-        $factory = $this->container->get('security.encoder_factory');
+        /*$factory = $this->container->get('security.encoder_factory');
 
         $userManager = $this->container->get('fos_user.user_manager');
 
@@ -37,7 +37,7 @@ class LoadEnseignant extends AbstractFixture implements OrderedFixtureInterface,
         $password = $encoder->encodePassword('1234', $enseignant1->getSalt());
         $enseignant1->setPassword($password);
 
-        $userManager->updateUser($enseignant1);
+        $userManager->updateUser($enseignant1);*/
     }
 
     /**
@@ -46,11 +46,11 @@ class LoadEnseignant extends AbstractFixture implements OrderedFixtureInterface,
      */
     public function setContainer(ContainerInterface $container = null)
     {
-        $this->container = $container;
+        //$this->container = $container;
     }
 
     public function getOrder() {
-        return 4;
+        //return 4;
     }
 
 }

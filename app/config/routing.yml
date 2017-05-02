@@ -14,5 +14,15 @@ jtir_platform:
     resource: "@JTIRPlatformBundle/Resources/config/routing.yml"
     prefix:   /
 
+# Overwrite des routes du bundle FOSUser
 fos_user_security:
-    resource: "@JTIRUserBundle/Resources/config/security.yml"
+    resource: "@JTIRUserBundle/Resources/config/routing/security.yml"
+
+fos_user_register:
+    resource: "@FOSUserBundle/Resources/config/routing/registration.yml"
+    prefix: /inscription
+
+# Route pour l'inscription enseignant via le bundle PUGXMultiUser
+pugx_enseignant_registration:
+    path: /inscription
+    defaults: { _controller: JTIRUserBundle:Enseignants:register }

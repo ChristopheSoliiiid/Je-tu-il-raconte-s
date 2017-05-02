@@ -31,7 +31,7 @@ class Adresse
     private $etablissement;
 
     /**
-     * @ORM\OneToOne(targetEntity="JTIR\UserBundle\Entity\Enseignant", mappedBy="adresse")
+     * @ORM\OneToOne(targetEntity="JTIR\UserBundle\Entity\Enseignant", mappedBy="adresse", cascade={"persist"})
      */
     private $enseignant;
 
