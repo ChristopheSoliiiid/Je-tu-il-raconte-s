@@ -2,6 +2,7 @@
 namespace JTIR\UserBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use JTIR\PlatformBundle\Entity\Conte;
 use PUGX\MultiUserBundle\Validator\Constraints\UniqueEntity;
 use Doctrine\Common\Collections\ArrayCollection;
 
@@ -44,6 +45,7 @@ class Eleve extends User {
         $this->conte = new ArrayCollection();
         //$this->cadavreExquis = new ArrayCollection();
         $this->roles = array('ROLE_ELEVE');
+        $this->enabled = 1; // Active le compte au moment de l'enregistrement
     }
 
     /**

@@ -80,7 +80,7 @@ assetic:
 
 fos_user:
     db_driver:     orm #Le type de bdd à utiliser, dans notre cas l'ORM (Doctrine 2)
-    firewall_name: enseignant #Le nom du firewall derrière lequel on utilisera ces utilisateurs
+    firewall_name: main #Le nom du firewall derrière lequel on utilisera ces utilisateurs
     user_class:    JTIR\UserBundle\Entity\User
     service:
         user_manager: pugx_user_manager
@@ -97,3 +97,6 @@ pugx_multi_user:
                 form:
                     type: JTIR\UserBundle\Form\RegistrationType
                 template: JTIRUserBundle:Registration:register.html.twig
+        eleve:
+            entity:
+                class: JTIR\UserBundle\Entity\Eleve

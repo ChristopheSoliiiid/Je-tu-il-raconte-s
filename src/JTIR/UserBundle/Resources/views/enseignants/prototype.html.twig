@@ -3,3 +3,8 @@
 <td class="eleve">{{ form_widget(form.username, { 'attr' : { 'class': 'form-control input-eleve'} }) }}</td>
 <td class="eleve">{{ form_widget(form.plainPassword.first, { 'attr' : { 'class': 'form-control input-eleve'} }) }}</td>
 <td class="eleve">{{ form_widget(form.plainPassword.second, { 'attr' : { 'class': 'form-control input-eleve'} }) }}</td>
+<td class="td-remove-eleve">
+    <a href="#" class="remove-eleve">
+        <img src="{{ asset('img/remove_icon.png') }}" alt="Retirer un élève" class="remove-eleve-icon">
+    </a>
+</td>

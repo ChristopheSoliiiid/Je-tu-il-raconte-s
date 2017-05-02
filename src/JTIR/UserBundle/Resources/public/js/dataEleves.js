@@ -24,10 +24,10 @@ $(function () {
     }
 
     function removeEleveLink($eleveFormTr) {
-        var $removeLink = $('<a href="#">X</a>');
-        $eleveFormTr.append($removeLink);
+        var $supprEleve = $('.remove-eleve:last');
+        console.info($supprEleve);
 
-        $removeLink.on('click', function (e) {
+        $supprEleve.on('click', function (e) {
             e.preventDefault();
             $eleveFormTr.remove();
         });

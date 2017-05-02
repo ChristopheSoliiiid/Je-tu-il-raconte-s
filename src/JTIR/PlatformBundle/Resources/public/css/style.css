@@ -585,6 +585,14 @@ li.dropdown.active.open > ul > li > a:hover {
     border-radius: 0 !important;
 }
 
+.remove-eleve-icon {
+    width: 25px;
+}
+
+.td-remove-eleve {
+    padding: 4px !important;
+}
+
 .nombre-eleve {
     width: 50px;
     font-weight: bold;

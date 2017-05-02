@@ -39,11 +39,13 @@ class Classe {
     private $adresse;
 
     /**
+     * EP = Entité Proprietaire
      * @ORM\OneToMany(targetEntity="JTIR\UserBundle\Entity\Classe", mappedBy="EI_classe")
      */
     private $EP_classe;
 
     /**
+     * EI = Entité Inverse
      * @ORM\ManyToOne(targetEntity="JTIR\UserBundle\Entity\Classe", inversedBy="EP_classe")
      * @ORM\JoinColumn(name="classe_id", referencedColumnName="id")
      */

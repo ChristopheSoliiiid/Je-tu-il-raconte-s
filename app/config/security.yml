@@ -34,5 +34,5 @@ security:
 
     # Le contrôle d'accès va s'occuper de déterminer si le visiteur a les bons droits (rôles) pour accéder à la ressource demandée.
     access_control:
-        #- { path: ^/eleve, roles: ROLE_ELEVE }
+        - { path: ^/eleve, roles: ROLE_ELEVE }
         - { path: ^/enseignant, roles: ROLE_ENSEIGNANT }
