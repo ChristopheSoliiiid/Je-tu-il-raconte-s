@@ -22,7 +22,7 @@ class Classe {
     private $niveau;
 
     /**
-     * @ORM\OneToMany(targetEntity="JTIR\UserBundle\Entity\Eleve", mappedBy="classe")
+     * @ORM\OneToMany(targetEntity="JTIR\UserBundle\Entity\Eleve", mappedBy="classe", cascade={"persist"})
      */
     private $eleves;
 

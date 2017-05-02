@@ -15,6 +15,17 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
 class EnseignantsController extends Controller {
 
     /**
+     * Action pour l'enregistrement d'un enseignant. (PUGXMultiUserBundle)
+     *
+     * @return mixed
+     */
+    public function registerAction() {
+        return $this->container
+                    ->get('pugx_multi_user.registration_manager')
+                    ->register('JTIR\UserBundle\Entity\Enseignant');
+    }
+
+    /**
      * Action du contrôleur pour la page de création d'une classe.
      *      -> Créer :
      *          -> La classe
@@ -50,7 +61,9 @@ class EnseignantsController extends Controller {
 
             // Ajout d'un message de confirmation de l'ajout de la classe et des élèves dans la bdd.
             $request->getSession()->getFlashBag()
-                ->add('classe_ok', 'Votre classe à bien été enregistrée.');
+                ->add('classe_ok', 'Votre classe et les comptes de vos élèves ont bien été crée.');
+
+            return $this->redirectToRoute('jtir_enseignants_inscrire_classe');
         }
 
         return $this->render('JTIRUserBundle:enseignants:classe.html.twig', array(

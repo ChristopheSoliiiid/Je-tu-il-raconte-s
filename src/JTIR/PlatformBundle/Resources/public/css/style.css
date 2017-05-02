@@ -169,6 +169,7 @@ section h2 {
 p.intro {
     font-size: 20px;
     font-family: Lato, "Montserrat", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    text-align: justify;
 }
 
 /* BOUTONS */
@@ -229,6 +230,7 @@ footer h3 {
 .apropos {
     color: #18BC9C;
     font-size: 0.8em;
+    text-align: justify;
 }
 
 .footer-green {

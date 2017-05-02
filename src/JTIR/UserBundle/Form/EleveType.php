@@ -1,19 +1,20 @@
 <?php
 
-namespace JTIR\UserBundle\Form\Type;
+namespace JTIR\UserBundle\Form;
 
 use JTIR\UserBundle\Entity\Eleve;
-use JTIR\UserBundle\Form\IdentiteType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class EleveType extends AbstractType {
+class EleveType extends AbstractType
+{
 
     /**
      * {@inheritdoc}
      */
-    public function buildForm(FormBuilderInterface $builder, array $options) {
+    public function buildForm(FormBuilderInterface $builder, array $options)
+    {
         $builder
             ->add('identite', IdentiteType::class)
             ->remove('email');
@@ -22,7 +23,8 @@ class EleveType extends AbstractType {
     /**
      * {@inheritdoc}
      */
-    public function getParent() {
+    public function getParent()
+    {
         return 'FOS\UserBundle\Form\Type\RegistrationFormType';
     }
 
@@ -39,7 +41,8 @@ class EleveType extends AbstractType {
     /**
      * {@inheritdoc}
      */
-    public function getBlockPrefix() {
+    public function getBlockPrefix()
+    {
         return 'app_user_registration';
     }
 }

@@ -21,7 +21,7 @@ class AppKernel extends Kernel
             new JTIR\AdminBundle\JTIRAdminBundle(),
             new JTIR\CadavreExquisBundle\JTIRCadavreExquisBundle(),
             new FOS\UserBundle\FOSUserBundle(),
-            new \PUGX\MultiUserBundle\PUGXMultiUserBundle(),
+            new PUGX\MultiUserBundle\PUGXMultiUserBundle(),
         ];
 
         if (in_array($this->getEnvironment(), ['dev', 'test'], true)) {

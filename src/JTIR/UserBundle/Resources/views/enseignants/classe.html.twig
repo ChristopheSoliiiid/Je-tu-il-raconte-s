@@ -41,7 +41,7 @@
                         <img src="{{ asset('img/lady.png') }}" alt="Une demoiselle" id="demoiselle">
 
                         {% if app.session.flashbag.has('classe_ok') %}
-                            <div class="alert alert-success">
+                            <div class="alert alert-success text-center">
                                 {% for msg in app.session.flashBag.get('classe_ok') %}
                                     {{ msg }}
                                 {% endfor %}
@@ -112,43 +112,19 @@
                             <table class="table table-responsive table-bordered" id="table-eleve">
                                 <thead class="table-classe">
                                 <tr>
-                                    <td class="nombre-eleve text-center">#</td>
                                     <td>Nom</td>
                                     <td>Prénom</td>
+                                    <td>Identifiant</td>
                                     <td>Mot de passe</td>
+                                    <td>Confirmation MDP</td>
                                 </tr>
                                 </thead>
-                                <tbody>
-                                <tr>
-                                    <td class="eleve nombre-eleve">1</td>
-                                    <td class="eleve"><input type="text" class="form-control input-eleve"></td>
-                                    <td class="eleve"><input type="text" class="form-control input-eleve"></td>
-                                    <td class="eleve"><input type="text" class="form-control input-eleve"></td>
-                                </tr>
-                                <tr>
-                                    <td class="eleve nombre-eleve">2</td>
-                                    <td class="eleve"><input type="text" class="form-control input-eleve"></td>
-                                    <td class="eleve"><input type="text" class="form-control input-eleve"></td>
-                                    <td class="eleve"><input type="text" class="form-control input-eleve"></td>
-                                </tr>
-                                <tr>
-                                    <td class="eleve nombre-eleve">3</td>
-                                    <td class="eleve"><input type="text" class="form-control input-eleve"></td>
-                                    <td class="eleve"><input type="text" class="form-control input-eleve"></td>
-                                    <td class="eleve"><input type="text" class="form-control input-eleve"></td>
-                                </tr>
-                                <tr>
-                                    <td class="eleve nombre-eleve">4</td>
-                                    <td class="eleve"><input type="text" class="form-control input-eleve"></td>
-                                    <td class="eleve"><input type="text" class="form-control input-eleve"></td>
-                                    <td class="eleve"><input type="text" class="form-control input-eleve"></td>
-                                </tr>
-                                <tr>
-                                    <td class="eleve nombre-eleve">5</td>
-                                    <td class="eleve"><input type="text" class="form-control input-eleve"></td>
-                                    <td class="eleve"><input type="text" class="form-control input-eleve"></td>
-                                    <td class="eleve"><input type="text" class="form-control input-eleve"></td>
-                                </tr>
+                                <tbody id="classe_eleves" data-prototype="
+                                            {% filter escape %}
+                                                {{ include('JTIRUserBundle:enseignants:prototype.html.twig',
+                                                    { 'form' : form.eleves.vars.prototype }) }}
+                                            {% endfilter %}">
+
                                 </tbody>
                             </table>
 
@@ -160,7 +136,8 @@
                             <input type="submit" value="{{ 'form.classe.submit'|trans }}" class="btn btn-def btn-form center-block"/>
                         </div>
 
-                        {{ form_end(form) }}
+                        {{ form_widget(form._token) }}
+                        {{ form_end(form, {'render_rest': false}) }}
 
                     </div>
                 </div>
@@ -178,24 +155,7 @@
 {% endblock %}
 
 {% block javascripts %}
-    <!-- Script pour ajouter une ligne a la table élève -->
-    <script>
-        $(function () {
-            $('.ajout-eleve').on('click', function () {
-                // Récupère le nombre de tr dans la table #table-eleve
-                var rowCount = $('#table-eleve tr').length;
-
-                // Les lignes html à ajouter pour rajouter une ligne à la table
-                var $trAdd = '<tr>' +
-                    '<td class="eleve nombre-eleve">' + (rowCount) + '</td>' +
-                    '<td class="eleve"><input type="text" class="form-control input-eleve"></td>' +
-                    '<td class="eleve"><input type="text" class="form-control input-eleve"></td>' +
-                    '<td class="eleve"><input type="text" class="form-control input-eleve"></td>' +
-                    '</tr>';
-
-                // Ajoute une ligne à la table
-                $('#table-eleve tr:last').after($trAdd);
-            });
-        });
-    </script>
+    {% javascripts 'bundles/jtirplatform/js/resizeLogo.js' filter='?jsqueeze' %}
+    <script type="text/javascript" src="{{ asset_url }}"></script>
+    {% endjavascripts %}
 {% endblock %}

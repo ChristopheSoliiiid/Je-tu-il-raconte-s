@@ -13,7 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 class Eleve extends User {
 
     /**
-     * @ORM\OneToOne(targetEntity="JTIR\UserBundle\Entity\Identite")
+     * @ORM\OneToOne(targetEntity="JTIR\UserBundle\Entity\Identite", cascade={"persist"})
      * @ORM\JoinColumn(name="identite_id", referencedColumnName="id", nullable=false, unique=true)
      */
     private $identite;
