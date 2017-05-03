@@ -25,7 +25,8 @@ class ClasseType extends AbstractType
                     'Grand section de marternelle' => 'GS',
                     'CP' => 'CP',
                     'CE1' => 'CE1'
-                ),))
+                ),
+                'placeholder' => 'Choisir le niveau de la classe'))
             ->add('eleves', CollectionType::class, array(
                 'entry_type' => EleveType::class,
                 'allow_add' => true, // Autorise l'ajout de plusieurs form Eleve
