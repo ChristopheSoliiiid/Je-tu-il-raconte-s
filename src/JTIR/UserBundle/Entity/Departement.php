@@ -2,6 +2,8 @@
 
 namespace JTIR\UserBundle\Entity;
 
+use Unirest\Request as UnirestRequest;
+
 /**
  * Departement
  */
@@ -74,6 +76,22 @@ class Departement {
     public function getNom()
     {
         return $this->nom;
+    }
+
+    /**
+     * @return array
+     */
+    public function getVilles() {
+        $villes = array();
+
+        $responseVille = UnirestRequest::get(
+            "https://geo.api.gouv.fr/departements/".$this->getNumero()."/communes?fields=nom,codesPostaux");
+
+        foreach ($responseVille->body as $ville) {
+            array_push($villes, new Ville($ville->codesPostaux[0], $ville->nom));
+        }
+
+        return $villes;
     }
 }
 

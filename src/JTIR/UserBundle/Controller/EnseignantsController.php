@@ -49,9 +49,12 @@ class EnseignantsController extends Controller {
         $enseignant = $this->getUser(); // On récupère l'enseignant connecté
 
         // Construction du formulaire
-        $form = $this->get('form.factory')->create(ClasseType::class, $classe);
+        //$form = $this->get('form.factory')->create(ClasseType::class, $classe);
+        $form = $this->createForm(ClasseType::class, $classe);
+        $form->handleRequest($request);
 
-        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+        //if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
 
             $classe->setEnseignant($enseignant); // Assignation de l'enseignant à la classe
 

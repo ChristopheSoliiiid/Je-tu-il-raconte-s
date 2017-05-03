@@ -3,21 +3,24 @@
 namespace JTIR\UserBundle\Form;
 
 use JTIR\UserBundle\Entity\Departement;
-use JTIR\UserBundle\Entity\Etablissement;
-use JTIR\UserBundle\Entity\Ville;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Form\FormEvent;
+use Symfony\Component\Form\FormEvents;
+use Symfony\Component\Form\FormInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 
-class AdresseType extends AbstractType {
+class AdresseType extends AbstractType
+{
 
     /**
      * {@inheritdoc}
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
+        /*$builder
             ->add('departement', ChoiceType::class, array(
                 'choices' => array(
                     '54 - Meurthe-et-Moselle' => 'Meurthe-et-Moselle',
@@ -47,53 +50,62 @@ class AdresseType extends AbstractType {
                     'Ecole Pierre Dohm' => 'EPA',
                     'Ecole Jules Ferry' => 'EJF'
                 )
+            ));*/
+
+        $departements = array(
+            new Departement('54', 'Meurthe-et-Moselle'),
+            new Departement('55', 'Meuse'),
+            new Departement('57', 'Moselle'),
+            new Departement('88', 'Vosges')
+        );
+
+        $builder
+            ->add('departement', ChoiceType::class, array(
+                'choices' => $departements,
+                'placeholder' => '',
+            ))
+            ->add('etablissement', ChoiceType::class, array(
+                'choices' => array(
+                    'Ecole Albert Schweitzer' => 'EAS',
+                    'Ecole Pierre Dohm' => 'EPA',
+                    'Ecole Jules Ferry' => 'EJF'
+                )
             ));
 
-        /*$builder->add('departement', ChoiceType::class, [
-            'choices' => [
-                new Departement('54', 'Meurthe-et-Moselle'),
-                new Departement('55', 'Meuse'),
-                new Departement('57', 'Moselle'),
-                new Departement('88', 'Vosges'),
-            ],
-            'choice_label' => function(Departement $departement) {
-                return $departement->getNumero() . " - " . $departement->getNom();
-            },
-            'group_by' => function(Departement $departement) {
-                if($departement->getNumero() == ('54' || '55' || '57' || '88')) {
-                    return 'Lorraine';
-                } else {
-                    return 'Autres';
-                }
+        $formModifier = function (FormInterface $form, Departement $departement = null) {
+            $villes = null === $departement ? array() : $departement->getVilles();
+            // $villes recois une liste vide si département est null sinon va chercher les villes du département
+
+            $form->add('ville', ChoiceType::class, array(
+                'placeholder' => '',
+                'choices' => $villes,
+            ));
+        };
+
+        $builder->addEventListener(
+            FormEvents::PRE_SET_DATA,
+            function (FormEvent $event) use ($formModifier) {
+                $data = $event->getData();
+
+                //$formModifier($event->getForm(), $data->getDepartement());
             }
-        ])
-            ->add('ville', ChoiceType::class, [
-                'choices' => [
-                    new Ville('54000', 'Nancy'),
-                    new Ville('54300', 'Lunéville'),
-                    new Ville('54390', 'Frouard'),
-                    new Ville('54700', 'Pont-à-Mousson'),
-                ],
-                'choice_label' => function(Ville $ville) {
-                    return $ville->getCp() . " - " . $ville->getNom();
-                }
-            ])
-            ->add('etablissement', ChoiceType::class, [
-                'choices' => [
-                    new Etablissement('0540146R', 'Ecole élémentaire Robert Desnos'),
-                    new Etablissement('0540148T', 'Ecole élémentaire Genaville'),
-                    new Etablissement('0540149U', 'Ecole primaire des Paquis'),
-                ],
-                'choice_label' => function(Etablissement $etablissement) {
-                    return $etablissement->getNom();
-                }
-            ]);*/
+        );
+
+        $builder->get('departement')->addEventListener(
+            FormEvents::POST_SUBMIT,
+            function (FormEvent $event) use ($formModifier) {
+                $departement = $event->getForm()->getData();
+
+                $formModifier($event->getForm()->getParent(), $departement);
+            }
+        );
     }
 
     /**
      * {@inheritdoc}
      */
-    public function configureOptions(OptionsResolver $resolver) {
+    public function configureOptions(OptionsResolver $resolver)
+    {
         $resolver->setDefaults(array(
             'data_class' => 'JTIR\UserBundle\Entity\Adresse'
         ));
@@ -102,7 +114,8 @@ class AdresseType extends AbstractType {
     /**
      * {@inheritdoc}
      */
-    public function getBlockPrefix() {
+    public function getBlockPrefix()
+    {
         return 'jtir_userbundle_adresse';
     }
 
