@@ -2,7 +2,6 @@
 
 namespace JTIR\UserBundle\Form;
 
-use JTIR\UserBundle\Entity\Adresse;
 use JTIR\UserBundle\Entity\Departement;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
@@ -50,9 +49,6 @@ class AdresseType extends AbstractType
             ->add('etablissement', TextType::class); // Champ type text pour le nom de l'établissement
 
         $formModifier = function (FormInterface $form, Departement $departement = null) {
-
-            //$departement2 = new Departement('55', 'Meurthe-et-Moselle');
-
             $villes = null === $departement ? array() : $departement->getVilles();
             // $villes recois une liste vide si département est null sinon va chercher les villes du département
 
@@ -71,17 +67,40 @@ class AdresseType extends AbstractType
             /* Sert a modifier les données avant le remplissage des données du formulaire ou va modifier les données
             en fonction des données du formulaire. Pour plus d'information :
             http://symfony.com/doc/current/form/events.html#a-the-formevents-pre-set-data-event */
-            FormEvents::PRE_SET_DATA,
+            FormEvents::POST_SET_DATA,
             function (FormEvent $event) use ($formModifier) {
                 // Récupère une entité Adresse
                 $data = $event->getData();
+                dump($event);
 
-                if ($data !== null) {
+                /*if ($data !== null) {
                     $formModifier($event->getForm(), $data->getDepartement());
                 } else {
+                    $rand = rand(1,4);
+                    $numDep = null;
+
+                    switch ($rand) {
+                        case '1':
+                            $numDep = '54';
+                            break;
+                        case '2':
+                            $numDep = '55';
+                            break;
+                        case '3':
+                            $numDep = '57';
+                            break;
+                        case '4':
+                            $numDep = '88';
+                            break;
+                    }
+
+                    $departement = new Departement($numDep, 'abc');
+
                     $data = new Adresse();
-                    $formModifier($event->getForm(), $data->getDepartement());
-                }
+                    $data->setDepartement($departement);*/
+                    $dep = new Departement('54', '4da5z64');
+                    $formModifier($event->getForm(), $dep);
+                //}
             }
         );
 
