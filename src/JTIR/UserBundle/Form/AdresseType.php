@@ -59,6 +59,7 @@ class AdresseType extends AbstractType
             ))
             ->add('etablissement', TextType::class); // Champ type text pour le nom de l'établissement
 
+        // TODO: Mettre en place les FormEvents pour modifier les données des listes déroulantes de façon dynamique
         /*$formModifier = function (FormInterface $form, Departement $departement = null) {
             $villes = null === $departement ? array() : $departement->getVilles();
             // $villes recois une liste vide si département est null sinon va chercher les villes du département

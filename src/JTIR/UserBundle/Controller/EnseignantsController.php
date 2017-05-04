@@ -28,15 +28,15 @@ class EnseignantsController extends Controller {
     /**
      * Action du contrôleur pour la page de création d'une classe.
      *      -> Créer :
-     *          -> La classe
-     *          -> Les comptes élèves
+     *          -> La classe [OK]
+     *          -> Les comptes élèves [OK]
      *
      *      -> Récupérer :
      *          -> Les données pour les listes déroulante
      *              -> Département
      *              -> Ville
      *              -> Établissement
-     *              -> Niveau
+     *              -> Niveau TODO: Créer une entity pour les niveaux
      *
      * @Security("has_role('ROLE_ENSEIGNANT')")
      *

@@ -94,13 +94,13 @@
 
                             <div class="form-group">
                                 {# Génération du label #}
-                                {{ form_label(form.niveau) }}
+                                {{ form_label(form.niveau.niveau) }}
 
                                 {# Affichage des erreurs pour ce champ précis #}
-                                {{ form_errors(form.niveau) }}
+                                {{ form_errors(form.niveau.niveau) }}
 
                                 {# Génération de l'input #}
-                                {{ form_widget(form.niveau, {'attr': {'class':'form-control'}}) }}
+                                {{ form_widget(form.niveau.niveau, {'attr': {'class':'form-control'}}) }}
                             </div>
 
                         </div>
