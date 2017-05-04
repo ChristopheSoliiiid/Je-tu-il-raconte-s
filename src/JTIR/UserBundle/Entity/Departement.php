@@ -2,6 +2,8 @@
 
 namespace JTIR\UserBundle\Entity;
 
+use Doctrine\Common\Collections\ArrayCollection;
+use PUGX\MultiUserBundle\Validator\Constraints\UniqueEntity;
 use Unirest\Request as UnirestRequest;
 
 /**
@@ -89,6 +91,27 @@ class Departement {
 
         foreach ($responseVille->body as $ville) {
             array_push($villes, new Ville($ville->codesPostaux[0], $ville->nom));
+        }
+
+        return $villes;
+    }
+
+    /**
+     * Méthode en attendant de trouver une solution au chargement dynamique des villes en fonctions du département.
+     *
+     * @param array $departements
+     * @return array
+     */
+    public static function getAllVilles(array $departements) {
+        $villes = array();
+
+        foreach ($departements as $departement) {
+            $resVille = UnirestRequest::get(
+                "https://geo.api.gouv.fr/departements/".$departement->getNumero()."/communes?fields=nom,codesPostaux");
+
+            foreach ($resVille->body as $ville) {
+                array_push($villes, new Ville($ville->codesPostaux[0], $ville->nom));
+            }
         }
 
         return $villes;

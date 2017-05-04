@@ -124,7 +124,6 @@
                                                 {{ include('JTIRUserBundle:enseignants:prototype.html.twig',
                                                     { 'form' : form.eleves.vars.prototype }) }}
                                             {% endfilter %}">
-
                                 </tbody>
                             </table>
 
@@ -160,19 +159,22 @@
     {% endjavascripts %}
 
     <!-- plugin jQuery Select2 pour permettre une recherche dans les listes déroulantes -->
-    <!--<link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
     <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
 
     <script>
-        $('#classe_adresse_departement').select2({
+        var $selectDepartement = $('#classe_adresse_departement');
+        var $selectVille = $('#classe_adresse_ville');
+
+        $selectDepartement.select2({
             placeholder: 'Choisissez un département'
         });
-        $('#classe_adresse_ville').select2({
+        $selectVille.select2({
             placeholder: 'Choisissez une ville'
         });
-    </script>-->
+    </script>
 
-    <script>
+    <!--<script>
         var $departement = $('#classe_adresse_departement');
 
         $departement.change(function () {
@@ -191,5 +193,5 @@
                 }
             });
         });
-    </script>
+    </script>-->
 {% endblock %}

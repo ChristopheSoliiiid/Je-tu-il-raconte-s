@@ -1,5 +1,6 @@
 <?php
 namespace JTIR\UserBundle\Entity;
+
 use Doctrine\ORM\Mapping as ORM;
 
 /**
@@ -124,7 +125,7 @@ class Adresse
      *
      * @return Adresse
      */
-    public function setEnseignant(\JTIR\UserBundle\Entity\Enseignant $enseignant = null)
+    public function setEnseignant(Enseignant $enseignant = null)
     {
         $this->enseignant = $enseignant;
 
