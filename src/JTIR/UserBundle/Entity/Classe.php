@@ -17,7 +17,8 @@ class Classe {
     private $id;
 
     /**
-     * @ORM\Column(type="string", length=15, nullable=false)
+     * @ORM\ManyToOne(targetEntity="JTIR\UserBundle\Entity\Niveau", cascade={"persist"})
+     * @ORM\JoinColumn(name="niveau_id", referencedColumnName="id", nullable=false)
      */
     private $niveau;
 

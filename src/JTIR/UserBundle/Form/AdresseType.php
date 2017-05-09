@@ -49,7 +49,7 @@ class AdresseType extends AbstractType
                 },
             ))
             ->add('ville', ChoiceType::class, array(
-                'placeholder' => 'Choisir un ville',
+                'placeholder' => 'Choisir une ville',
                 'choices' => $villes, // TODO: Doit etre une liste de String et non pas d'objet
                 'choice_label' => function ($value) {
                     return $value->getCp() . ' - ' . $value->getNom();

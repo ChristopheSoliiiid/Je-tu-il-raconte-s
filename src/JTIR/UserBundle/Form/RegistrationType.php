@@ -15,7 +15,7 @@ class RegistrationType extends AbstractType {
 
     public function buildForm(FormBuilderInterface $builder, array $options) {
         $builder
-            ->add('adresse', AdresseType::class)
+            ->add('adresse', AdresseTempType::class) // TODO: Changer en AdresseType
             ->add('civilite', EntityType::class,
                 array('class' => 'JTIRUserBundle:Civilite',
                 'choice_label' => 'libelle'))

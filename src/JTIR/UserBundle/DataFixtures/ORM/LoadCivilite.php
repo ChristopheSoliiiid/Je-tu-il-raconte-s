@@ -13,7 +13,7 @@ use JTIR\UserBundle\Entity\Civilite;
  * Class LoadCivilite
  * @package JTIR\UserBundle\DataFixtures\ORM*
  */
-class LoadCivilite extends AbstractFixture implements OrderedFixtureInterface {
+class LoadCivilite extends AbstractFixture {
 
     public function load(ObjectManager $manager) {
         $civ1 = new Civilite();
@@ -29,12 +29,8 @@ class LoadCivilite extends AbstractFixture implements OrderedFixtureInterface {
         $manager->flush();
 
         // Ajoute une référence dans les DataFixtures pour pouvoir l'utiliser dans d'autres fixtures
-        $this->addReference('m.', $civ1);
-        $this->addReference('mme.', $civ2);
-    }
-
-    public function getOrder() {
-        return 2;
+        /*$this->addReference('m.', $civ1);
+        $this->addReference('mme.', $civ2);*/
     }
 
 }

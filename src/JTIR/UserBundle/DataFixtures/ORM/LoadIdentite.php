@@ -11,7 +11,7 @@ class LoadIdentite extends AbstractFixture implements OrderedFixtureInterface {
 
     public function load(ObjectManager $manager) {
 
-        $identite1 = new Identite();
+        /*$identite1 = new Identite();
         $identite1->setNom('Siebert');
         $identite1->setPrenom('Marc');
 
@@ -19,7 +19,7 @@ class LoadIdentite extends AbstractFixture implements OrderedFixtureInterface {
         $manager->flush();
 
         // Ajoute une référence dans les DataFixtures pour pouvoir l'utiliser dans d'autres fixtures
-        $this->addReference('identite_marc', $identite1);
+        $this->addReference('identite_marc', $identite1);*/
 
     }
 

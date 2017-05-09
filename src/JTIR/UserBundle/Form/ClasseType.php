@@ -3,6 +3,7 @@
 namespace JTIR\UserBundle\Form;
 
 use JTIR\UserBundle\Entity\Classe;
+use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CollectionType;
 use Symfony\Component\Form\FormBuilderInterface;
@@ -17,8 +18,10 @@ class ClasseType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('adresse', AdresseType::class)
-            ->add('niveau', NiveauType::class)
+            ->add('adresse', AdresseTempType::class) // TODO: Changer en AdresseType
+            ->add('niveau', EntityType::class,
+                array('class' => 'JTIRUserBundle:Niveau',
+                    'choice_label' => 'libelle'))
             ->add('eleves', CollectionType::class, array(
                 'entry_type' => EleveType::class,
                 'allow_add' => true, // Autorise l'ajout de plusieurs form Eleve
