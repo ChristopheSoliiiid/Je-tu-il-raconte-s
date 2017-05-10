@@ -2,6 +2,7 @@
 
 namespace JTIR\UserBundle\Controller;
 
+use Doctrine\ORM\PersistentCollection;
 use JTIR\UserBundle\Entity\Classe;
 use JTIR\UserBundle\Form\ClasseType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -33,10 +34,10 @@ class EnseignantsController extends Controller {
      *
      *      -> Récupérer :
      *          -> Les données pour les listes déroulante
-     *              -> Département
-     *              -> Ville
-     *              -> Établissement
-     *              -> Niveau TODO: Créer une entity pour les niveaux
+     *              -> Département [OK]
+     *              -> Ville [OK]
+     *              -> Établissement TODO: Faire un TextType avec autocomplétion en fonction des résultats de la bdd
+     *              -> Niveau [OK]
      *
      * @Security("has_role('ROLE_ENSEIGNANT')")
      *
@@ -49,11 +50,9 @@ class EnseignantsController extends Controller {
         $enseignant = $this->getUser(); // On récupère l'enseignant connecté
 
         // Construction du formulaire
-        //$form = $this->get('form.factory')->create(ClasseType::class, $classe);
         $form = $this->createForm(ClasseType::class, $classe);
         $form->handleRequest($request);
 
-        //if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
         if ($form->isSubmitted() && $form->isValid()) {
 
             $classe->setEnseignant($enseignant); // Assignation de l'enseignant à la classe
@@ -90,17 +89,34 @@ class EnseignantsController extends Controller {
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function bibliothequeAction() {
-        return $this->render('JTIRUserBundle:enseignants:bibliotheque.html.twig');
+
+        $enseignant = $this->getUser(); // Permet de récupérer l'utilisateur actuellement connecté
+        $classes = $enseignant->getClasses(); // Récup toutes les classes de l'enseignant
+        //$listeEleves = array(); // Tableau vide pour les élèves
+        //$listeEcoles = array();
+
+        /*foreach ($classes as $classe) { // Boucle pour parcourir chaque classe
+            $eleves = $classe->getEleves(); // Les élèves d'une classe
+            array_push($listeEcoles, $classe->getAdresse()->getEtablissement());
+
+            /*foreach ($eleves as $eleve) { // Boucle pour chaque élève
+                array_push($listeEleves, $eleve); // Ajout de l'élève dans la liste d'élève
+            }*/
+        //}
+
+        return $this->render('JTIRUserBundle:enseignants:bibliotheque.html.twig', array(
+            'classes' => $classes,
+        ));
     }
 
     /**
      * Action du contrôleur pour la page de partenariat.
      *      -> Récupérer :
      *          -> Les données pour les listes déroulante
-     *              -> Département
-     *              -> Ville
-     *              -> Établissement
-     *              -> Niveau
+     *              -> Département [OK]
+     *              -> Ville [OK]
+     *              -> Établissement [OK]
+     *              -> Niveau [OK]
      *          -> Les classes disponibles en fonction des filtres de recherche
      *
      *      -> Action possible :

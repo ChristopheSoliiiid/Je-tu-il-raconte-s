@@ -28,7 +28,7 @@ class Classe {
     private $eleves;
 
     /**
-     * @ORM\ManyToOne(targetEntity="JTIR\UserBundle\Entity\Enseignant", inversedBy="classe")
+     * @ORM\ManyToOne(targetEntity="JTIR\UserBundle\Entity\Enseignant", inversedBy="classes")
      * @ORM\JoinColumn(name="enseignant_id", referencedColumnName="id", nullable=false)
      */
     private $enseignant;
@@ -51,6 +51,7 @@ class Classe {
      * @ORM\JoinColumn(name="classe_id", referencedColumnName="id")
      */
     private $EI_classe;
+
     /**
      * Constructor
      */
