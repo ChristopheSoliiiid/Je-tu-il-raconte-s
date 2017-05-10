@@ -6,7 +6,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * @ORM\Table(name="user_classe")
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="JTIR\UserBundle\Repository\ClasseRepository")
  */
 class Classe {
     /**

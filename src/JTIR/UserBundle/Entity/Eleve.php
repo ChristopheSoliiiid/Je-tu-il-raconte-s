@@ -22,7 +22,7 @@ class Eleve extends User {
     /**
      * @ORM\OneToMany(targetEntity="JTIR\PlatformBundle\Entity\Conte", mappedBy="eleve")
      */
-    private $conte;
+    private $contes;
 
     /**
      * @ORM\ManyToOne(targetEntity="JTIR\UserBundle\Entity\Classe", inversedBy="eleves", cascade={"persist"})
@@ -89,7 +89,7 @@ class Eleve extends User {
      */
     public function addConte(Conte $conte)
     {
-        $this->conte[] = $conte;
+        $this->contes[] = $conte;
 
         return $this;
     }
@@ -101,7 +101,7 @@ class Eleve extends User {
      */
     public function removeConte(Conte $conte)
     {
-        $this->conte->removeElement($conte);
+        $this->contes->removeElement($conte);
     }
 
     /**
@@ -109,9 +109,9 @@ class Eleve extends User {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getConte()
+    public function getContes()
     {
-        return $this->conte;
+        return $this->contes;
     }
 
     /**

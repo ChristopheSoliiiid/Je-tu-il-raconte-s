@@ -92,17 +92,6 @@ class EnseignantsController extends Controller {
 
         $enseignant = $this->getUser(); // Permet de récupérer l'utilisateur actuellement connecté
         $classes = $enseignant->getClasses(); // Récup toutes les classes de l'enseignant
-        //$listeEleves = array(); // Tableau vide pour les élèves
-        //$listeEcoles = array();
-
-        /*foreach ($classes as $classe) { // Boucle pour parcourir chaque classe
-            $eleves = $classe->getEleves(); // Les élèves d'une classe
-            array_push($listeEcoles, $classe->getAdresse()->getEtablissement());
-
-            /*foreach ($eleves as $eleve) { // Boucle pour chaque élève
-                array_push($listeEleves, $eleve); // Ajout de l'élève dans la liste d'élève
-            }*/
-        //}
 
         return $this->render('JTIRUserBundle:enseignants:bibliotheque.html.twig', array(
             'classes' => $classes,
@@ -128,19 +117,17 @@ class EnseignantsController extends Controller {
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function partenariatAction(Request $request) {
+        $user = $this->getUser();
 
-        /* // création du "formulaire" ?
+        $em = $this->getDoctrine()->getManager();
+        $classes = $em->getRepository('JTIRUserBundle:Classe')
+                        ->findAllClasses($user);
 
-        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+        
 
-            // gestion des données
-
-            // Ajout d'un message de confirmation de l'ajout de la classe et des élèves dans la bdd.
-            $request->getSession()->getFlashBag()
-                ->add('classe_ok', 'Votre classe et les comptes de vos élèves ont bien enregistré.');
-        } */
-
-        return $this->render('JTIRUserBundle:enseignants:partenariat.html.twig');
+        return $this->render('JTIRUserBundle:enseignants:partenariat.html.twig', array(
+            'classes' => $classes,
+        ));
     }
 
     /**
