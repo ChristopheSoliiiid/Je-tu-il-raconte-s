@@ -5,7 +5,7 @@
 Vous avez deux solutions pour le faire :
 
 1. Via Git, en clonant ce dépôt ;
-2. Via le téléchargement du code source en une archive ZIP, à cette adresse : https://github.com/ChristopheSoliiiid/symfony-jetuil.git
+2. Via le téléchargement du code source en une archive ZIP, à cette adresse : https://github.com/ChristopheSoliiiid/Je-tu-il-raconte-s.git
 
 ## 2. Définir vos paramètres d'application
 Pour ne pas qu'on se partage tous nos mots de passe, le fichier `app/config/parameters.yml` est ignoré dans ce dépôt. A la place, vous avez le fichier `parameters.yml.dist` que vous devez renommer (enlevez le `.dist`) et modifier.
