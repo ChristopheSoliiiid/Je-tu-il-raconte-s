@@ -62,7 +62,7 @@ class Conte
     private $partage;
 
     /**
-     * @ORM\ManyToOne(targetEntity="JTIR\UserBundle\Entity\Eleve", inversedBy="conte")
+     * @ORM\ManyToOne(targetEntity="JTIR\UserBundle\Entity\Eleve", inversedBy="contes")
      * @ORM\JoinColumn(name="eleve_id", referencedColumnName="id")
      */
     private $eleve;

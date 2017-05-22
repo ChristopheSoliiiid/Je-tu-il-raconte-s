@@ -50,10 +50,13 @@
                     <div class="form-group">
                         <select name="departement" id="departement" class="form-control color-form">
                             <option value="" disabled selected>-- Choisissez un élève --</option>
-                            <option value="ct">Céline T</option>
-                            <option value="cm">Christophe M</option>
-                            <option value="jf">Julie F</option>
-                            <option value="jf">Pascal G</option>
+                            {% for classe in classes %}
+                                <optgroup label="{{ classe.adresse.etablissement }}">
+                                    {% for eleve in classe.eleves %}
+                                        <option value="{{ eleve.id }}">{{ eleve.identite.nom }} {{ eleve.identite.prenom }}</option>
+                                    {% endfor %}
+                                </optgroup>
+                            {% endfor %}
                         </select>
                     </div>
                 </form>

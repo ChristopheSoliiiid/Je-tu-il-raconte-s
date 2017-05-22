@@ -33,7 +33,7 @@
                 </div>
             </div>
 
-            <form action="#">
+            <form action="{{ path('jtir_enseignants_partenariat') }}" method="get">
 
                 <div class="row">
                     <div class="col-lg-10 col-lg-offset-1 col-sm-10 col-sm-offset-1 block-classe">
@@ -87,6 +87,8 @@
                             <h3 class="text-center">Les classes disponibles</h3>
                             <hr class="small-hr">
 
+                            <!-- CSS pour le script jQuery dataTables -->
+                            <link rel="stylesheet" href="https://cdn.datatables.net/1.10.13/css/dataTables.bootstrap.min.css">
                             <table class="table table-responsive table-bordered" id="table-eleve">
                                 <thead class="table-classe">
                                 <tr>
@@ -97,30 +99,14 @@
                                 </tr>
                                 </thead>
                                 <tbody>
-                                <tr>
-                                    <td>Ecole Albert Schweitzer</td>
-                                    <td>CP</td>
-                                    <td>Mr. ...</td>
-                                    <td class="text-center"><input type="checkbox"></td>
-                                </tr>
-                                <tr>
-                                    <td>Ecole Albert Schweitzer</td>
-                                    <td>CE1</td>
-                                    <td>Mme. ...</td>
-                                    <td class="text-center"><input type="checkbox"></td>
-                                </tr>
-                                <tr>
-                                    <td>Ecole Jules Ferry</td>
-                                    <td>GS</td>
-                                    <td>Mr. ...</td>
-                                    <td class="text-center"><input type="checkbox"></td>
-                                </tr>
-                                <tr>
-                                    <td>Ecole Pierre Dohm</td>
-                                    <td>CE1</td>
-                                    <td>Mme. ...</td>
-                                    <td class="text-center"><input type="checkbox"></td>
-                                </tr>
+                                {% for classe in classes %}
+                                    <tr>
+                                        <td>{{ classe.adresse.etablissement }}</td>
+                                        <td>{{ classe.niveau.libelle }}</td>
+                                        <td>{{ classe.enseignant.civilite.libelle }} {{ classe.enseignant.identite.nom }}</td>
+                                        <td class="text-center"><input type="checkbox" value="{{ classe.id }}"></td>
+                                    </tr>
+                                {% endfor %}
                                 </tbody>
                             </table>
                         </div>
@@ -143,4 +129,20 @@
 
 {% block sitemap %}
     {{ include('JTIRUserBundle:enseignants:sitemap.html.twig') }}
+{% endblock %}
+
+{% block javascripts %}
+    <!-- Scripts pour dataTable -->
+    <script src="https://cdn.datatables.net/1.10.13/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.13/js/dataTables.bootstrap.min.js"></script>
+
+    <script>
+        $(function() {
+            $('#table-eleve').DataTable({
+                "language": {
+                    "url": "https://cdn.datatables.net/plug-ins/1.10.13/i18n/French.json"
+                }
+            });
+        });
+    </script>
 {% endblock %}

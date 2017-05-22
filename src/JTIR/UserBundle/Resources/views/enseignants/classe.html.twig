@@ -124,7 +124,6 @@
                                                 {{ include('JTIRUserBundle:enseignants:prototype.html.twig',
                                                     { 'form' : form.eleves.vars.prototype }) }}
                                             {% endfilter %}">
-
                                 </tbody>
                             </table>
 
@@ -158,4 +157,41 @@
     {% javascripts 'bundles/jtiruser/js/dataEleves.js' filter='?jsqueeze' %}
         <script type="text/javascript" src="{{ asset_url }}"></script>
     {% endjavascripts %}
+
+    <!-- plugin jQuery Select2 pour permettre une recherche dans les listes déroulantes -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/css/select2.min.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.3/js/select2.min.js"></script>
+
+    <script>
+        var $selectDepartement = $('#classe_adresse_departement');
+        var $selectVille = $('#classe_adresse_ville');
+
+        $selectDepartement.select2({
+            placeholder: 'Choisissez un département'
+        });
+        $selectVille.select2({
+            placeholder: 'Choisissez une ville'
+        });
+    </script>
+
+    <!--<script>
+        var $departement = $('#classe_adresse_departement');
+
+        $departement.change(function () {
+            var $form = $(this).closest('form');
+            var data = {};
+            data[$departement.attr('nom')] = $departement.val(); // numéro du dep
+
+            $.ajax({
+                url: $form.attr('action'),
+                type: $form.attr('method'),
+                data: data,
+                success: function (html) {
+                    $('#classe_adresse_ville').replaceWith(
+                        $(html).find('#classe_adresse_ville')
+                    );
+                }
+            });
+        });
+    </script>-->
 {% endblock %}

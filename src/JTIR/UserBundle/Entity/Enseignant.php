@@ -27,7 +27,7 @@ class Enseignant extends User {
     /**
      * @ORM\OneToMany(targetEntity="JTIR\UserBundle\Entity\Classe", mappedBy="enseignant")
      */
-    private $classe;
+    private $classes;
 
     /**
      * @ORM\ManyToOne(targetEntity="JTIR\UserBundle\Entity\Civilite", cascade={"persist"})
@@ -72,7 +72,7 @@ class Enseignant extends User {
      *
      * @return Enseignant
      */
-    public function setIdentite(\JTIR\UserBundle\Entity\Identite $identite)
+    public function setIdentite(Identite $identite)
     {
         $this->identite = $identite;
 
@@ -98,7 +98,7 @@ class Enseignant extends User {
      */
     public function addClasse(Classe $classe)
     {
-        $this->classe[] = $classe;
+        $this->classes[] = $classe;
 
         return $this;
     }
@@ -110,7 +110,7 @@ class Enseignant extends User {
      */
     public function removeClasse(Classe $classe)
     {
-        $this->classe->removeElement($classe);
+        $this->classes->removeElement($classe);
     }
 
     /**
@@ -118,9 +118,9 @@ class Enseignant extends User {
      *
      * @return \Doctrine\Common\Collections\Collection
      */
-    public function getClasse()
+    public function getClasses()
     {
-        return $this->classe;
+        return $this->classes;
     }
 
     /**

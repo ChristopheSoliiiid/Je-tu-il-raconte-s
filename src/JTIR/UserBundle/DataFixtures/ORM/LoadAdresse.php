@@ -11,7 +11,7 @@ class LoadAdresse extends AbstractFixture implements OrderedFixtureInterface {
 
     public function load(ObjectManager $manager) {
 
-        $adresse1 = new Adresse();
+        /*$adresse1 = new Adresse();
         $adresse1->setDepartement("Meurthe-et-Moselle");
         $adresse1->setVille("Frouard");
         $adresse1->setEtablissement("AFPA Nancy-Pompey");
@@ -21,10 +21,10 @@ class LoadAdresse extends AbstractFixture implements OrderedFixtureInterface {
         $manager->flush();
 
         // Ajoute une référence dans les DataFixtures pour pouvoir l'utiliser dans d'autres fixtures
-        $this->addReference('adresse_afpa', $adresse1);
+        $this->addReference('adresse_afpa', $adresse1);*/
     }
 
     public function getOrder() {
-        return 1;
+        //return 1;
     }
 }

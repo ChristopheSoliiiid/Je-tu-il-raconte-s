@@ -2,6 +2,7 @@
 
 namespace JTIR\UserBundle\Controller;
 
+use Doctrine\ORM\PersistentCollection;
 use JTIR\UserBundle\Entity\Classe;
 use JTIR\UserBundle\Form\ClasseType;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
@@ -28,15 +29,15 @@ class EnseignantsController extends Controller {
     /**
      * Action du contrôleur pour la page de création d'une classe.
      *      -> Créer :
-     *          -> La classe
-     *          -> Les comptes élèves
+     *          -> La classe [OK]
+     *          -> Les comptes élèves [OK]
      *
      *      -> Récupérer :
      *          -> Les données pour les listes déroulante
-     *              -> Département
-     *              -> Ville
-     *              -> Établissement
-     *              -> Niveau
+     *              -> Département [OK]
+     *              -> Ville [OK]
+     *              -> Établissement TODO: Faire un TextType avec autocomplétion en fonction des résultats de la bdd
+     *              -> Niveau [OK]
      *
      * @Security("has_role('ROLE_ENSEIGNANT')")
      *
@@ -49,9 +50,10 @@ class EnseignantsController extends Controller {
         $enseignant = $this->getUser(); // On récupère l'enseignant connecté
 
         // Construction du formulaire
-        $form = $this->get('form.factory')->create(ClasseType::class, $classe);
+        $form = $this->createForm(ClasseType::class, $classe);
+        $form->handleRequest($request);
 
-        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+        if ($form->isSubmitted() && $form->isValid()) {
 
             $classe->setEnseignant($enseignant); // Assignation de l'enseignant à la classe
 
@@ -87,17 +89,23 @@ class EnseignantsController extends Controller {
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function bibliothequeAction() {
-        return $this->render('JTIRUserBundle:enseignants:bibliotheque.html.twig');
+
+        $enseignant = $this->getUser(); // Permet de récupérer l'utilisateur actuellement connecté
+        $classes = $enseignant->getClasses(); // Récup toutes les classes de l'enseignant
+
+        return $this->render('JTIRUserBundle:enseignants:bibliotheque.html.twig', array(
+            'classes' => $classes,
+        ));
     }
 
     /**
      * Action du contrôleur pour la page de partenariat.
      *      -> Récupérer :
      *          -> Les données pour les listes déroulante
-     *              -> Département
-     *              -> Ville
-     *              -> Établissement
-     *              -> Niveau
+     *              -> Département [OK]
+     *              -> Ville [OK]
+     *              -> Établissement [OK]
+     *              -> Niveau [OK]
      *          -> Les classes disponibles en fonction des filtres de recherche
      *
      *      -> Action possible :
@@ -109,19 +117,17 @@ class EnseignantsController extends Controller {
      * @return \Symfony\Component\HttpFoundation\Response
      */
     public function partenariatAction(Request $request) {
+        $user = $this->getUser();
 
-        /* // création du "formulaire" ?
+        $em = $this->getDoctrine()->getManager();
+        $classes = $em->getRepository('JTIRUserBundle:Classe')
+                        ->findAllClasses($user);
 
-        if ($request->isMethod('POST') && $form->handleRequest($request)->isValid()) {
+        
 
-            // gestion des données
-
-            // Ajout d'un message de confirmation de l'ajout de la classe et des élèves dans la bdd.
-            $request->getSession()->getFlashBag()
-                ->add('classe_ok', 'Votre classe et les comptes de vos élèves ont bien enregistré.');
-        } */
-
-        return $this->render('JTIRUserBundle:enseignants:partenariat.html.twig');
+        return $this->render('JTIRUserBundle:enseignants:partenariat.html.twig', array(
+            'classes' => $classes,
+        ));
     }
 
     /**
